@@ -1,0 +1,236 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>VISUAL EXPERIENCE LAB</title> 
+    <link rel="preconnect" href="https://googleapis.com"> 
+    <link rel="preconnect" href="https://gstatic.com" crossorigin> 
+    <link href="https://googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"> 
+    <style> 
+        /* Base Overrides */ 
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            text-transform: uppercase; /* Forces all text to be ALL CAPS */ 
+        } 
+
+        /* Protect raw URL strings inside href tags from case distortion */
+        a {
+            text-transform: none !important;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; /* Forces Montserrat font */ 
+            background-color: #ffffff; /* Pure white background */ 
+            line-height: 1.8; /* Generous line-height for tracking */ 
+            padding: 4rem 1.5rem; 
+        } 
+
+        /* Centered Layout Wrapper */ 
+        .wrapper { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            text-align: center; 
+        } 
+
+        /* Large, Medium-Bold (600), Bright Red Title Container */ 
+        .lab-title { 
+            font-size: 3.75rem; 
+            margin-bottom: 2.5rem; 
+        } 
+
+        /* Title Link Styling to preserve the look and behavior */
+        .title-link {
+            text-decoration: none;
+            font-weight: 600; 
+            color: #d11a2a; /* Brighter crimson red */ 
+            letter-spacing: 0.15em; /* Wide letter-spacing to match the image */ 
+            transition: opacity 0.2s ease;
+            text-transform: uppercase !important; 
+        }
+        .title-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Uniform Dark Gray Subtext Rules - Scaled up 20% from 0.85rem to 1.02rem */ 
+        .lab-lead, 
+        .lab-tagline, 
+        .section-title, 
+        .item-name,
+        .member-degree { 
+            font-size: 1.02rem; /* Uniform text sizing across all elements */ 
+            color: #555555; /* Muted dark gray */ 
+            font-weight: 500; 
+            letter-spacing: 0.25em; /* Intentional, wide letter-spacing */ 
+        } 
+
+        .lab-lead { 
+            margin-bottom: 2.5rem; 
+            line-height: 2; 
+        } 
+
+        .lab-tagline { 
+            max-width: 850px; 
+            margin: 0 auto; 
+        } 
+
+        /* Layout Content Sections (News & Team) */ 
+        .content-section { 
+            margin-top: 6rem; 
+            padding-top: 2rem; 
+        } 
+        .section-title { 
+            font-weight: 700; 
+            margin-bottom: 3.5rem; 
+            color: #d11a2a; /* Red section headings */ 
+        } 
+        
+        .content-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 3.5rem; 
+            max-width: 850px; 
+            margin: 0 auto; 
+        } 
+
+        /* Formats each item as side-by-side: Image on Left, Content on Right */
+        .grid-item { 
+            display: grid; 
+            grid-template-columns: 200px 1fr; 
+            gap: 2.5rem; 
+            align-items: start; 
+        } 
+        
+        /* Square Image & Placeholder Layout */ 
+        .square-placeholder,
+        .headshot-image,
+        .research-image,
+        .news-image,
+        .pub-image { 
+            width: 100%; 
+            aspect-ratio: 1 / 1; /* Forces strict square box proportion */ 
+            background-color: #f3f4f6; /* Soft, light gray background fallback */ 
+            border: 1px solid #e5e7eb; 
+        } 
+        .headshot-image,
+        .news-image,
+        .research-image,
+        .pub-image {
+            object-fit: cover; /* Ensures the actual image fills the square cleanly */
+        } 
+        
+        /* Text grouping layout block */
+        .item-text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .item-name { 
+            font-weight: 700; 
+            line-height: 1.4; 
+            margin-bottom: 0.75rem;
+        } 
+
+        .item-description {
+            font-size: 1.02rem;
+            color: #555555;
+            font-weight: 400; 
+            line-height: 1.7;
+            text-align: justify; 
+            text-transform: none !important; /* Forces normal sentence case */
+            letter-spacing: normal !important; 
+        }
+        
+        /* Inline link styles to preserve page color hierarchy */
+        .item-description a {
+            color: #d11a2a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+            text-transform: none !important;
+        }
+        .item-description a:hover {
+            opacity: 0.8;
+        }
+
+        .member-degree { 
+            margin-top: 0.1rem; 
+            line-height: 1.4; 
+        } 
+
+        /* Responsive grid shift for tablets or phones */ 
+        @media (max-width: 768px) { 
+            .grid-item { 
+                grid-template-columns: 1fr; 
+                gap: 1.5rem; 
+                justify-items: center;
+            } 
+            .item-text-container {
+                align-items: center;
+                text-align: center;
+            }
+        } 
+    </style> 
+</head> 
+<body> 
+    <div class="wrapper"> 
+        <header> 
+            <h1 class="lab-title">
+                <a href="../index.html" class="title-link">Visual Experience Lab</a>
+            </h1> 
+            
+            <div class="lab-lead"> 
+                Benjamin Watson, Lead<br> 
+                Assoc Prof Comp Sci NCSU 
+            </div> 
+            
+            <p class="lab-tagline"> 
+                Visual technology that moves us —<br> 
+                how digital images affect emotion, thinking & behavior 
+            </p> 
+        </header> 
+
+        <section id="news" class="content-section">
+            <h2 class="section-title">News</h2>
+            <div class="content-grid">
+                
+                <div class="grid-item">
+                    <img src="pics/arjun.ashish.blinn.jpg" alt="VX Lab at SIGGRAPH 2026" class="news-image">
+                    <div class="item-text-container">
+                        <div class="item-name">Hmm VX Lab at SIGGRAPH 2026</div>
+                        <p class="item-description">
+                            Most of the lab made it to SIGGRAPH this year, where we made a <a href="https://go.ncsu.edu/manifestotalk" target="_blank" rel="noopener noreferrer">presentation</a> at the HPG conference, demoed our <a href="https://doi.acm.org?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">near-zero latency work</a> at Emerging Technologies, and then made three presentations at the <a href="https://price-workshop.org/2026/" target="_blank" rel="noopener noreferrer">PRICE workshop</a>. Of course, the real highlights were meeting Jim Blinn and Turner Whitted!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid-item">
+                    <img src="pics/ben.i3d.jpg" alt="VX Lab at ACM I3D 2026" class="news-image">
+                    <div class="item-text-container">
+                        <div class="item-name">vx lab at ACM I3D 2026</div>
+                        <p class="item-description">
+                            The lab played an important part in organizing the <a href="https://i3dsymposium.org/2026/" target="_blank" rel="noopener noreferrer">I3DG Symposium</a> this year, with Prof. Watson Papers Co-Chair, and Arjun Madhusudan and Ashish Rajpurohit Publicity Co-Chairs. Prof. Watson also demoed the lab's <a href="https://doi.org/10.1145/3807895.3807936" target="_blank" rel="noopener noreferrer">near-zero latency work</a>, while Arjun and Ashish both presented their <a href="https://doi.org/10.1145/3807895.3807930" target="_blank" rel="noopener noreferrer">esports</a> <a href="https://doi.org/10.1145/3807895.3807931" target="_blank" rel="noopener noreferrer">research</a> in the posters session. We also spent a lot of time posing with baby Yoda and the Mandalorian — I3D was at Lucasfilm!
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid-item">
+                    <img src="pics/evan.sid.png" alt="VX Lab at SID Display Week 2026" class="news-image">
+                    <div class="item-text-container">
+                        <div class="item-name">vx lab at SID Display Week 2026</div>
+                        <p class="item-description">
+                            Evan Jonson and Prof. Watson <a href="https://go.ncsu.edu/lowlatencydisplayslides" target="_blank" rel="noopener noreferrer">presented</a> their near-zero latency tech to Display Week this year, both as a <a href="https://go.ncsu.edu/nearzeropaper" target="_blank" rel="noopener noreferrer">paper</a> and a <a href="https://youtu.be/zViqs_4evNY?si=8l7kaW9MEgE99BsY" target="_blank" rel="noopener noreferrer">demo</a>. They received interest from Intel, Altera, Fuse Technologies and more.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+    </div> 
+</body> 
+</html>
