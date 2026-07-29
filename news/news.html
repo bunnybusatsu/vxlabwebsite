@@ -108,7 +108,7 @@
             align-items: start; 
         } 
 
-        /* Image link container styling to keep image layout structure clean */
+        /* Jump link wrappers styling */
         .image-jump-link {
             display: block;
             width: 100%;
@@ -116,6 +116,16 @@
         }
         .image-jump-link:hover {
             opacity: 0.85;
+        }
+
+        .title-jump-link {
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.15s ease;
+            text-transform: uppercase !important;
+        }
+        .title-jump-link:hover .item-name {
+            color: #d11a2a; /* Title turns crimson red on hover */
         }
         
         /* Square Image & Placeholder Layout */ 
@@ -148,6 +158,7 @@
             font-weight: 700; 
             line-height: 1.4; 
             margin-bottom: 0.75rem;
+            transition: color 0.15s ease;
         } 
 
         .item-description {
@@ -218,7 +229,9 @@
                         <img src="pics/arjun.ashish.blinn.jpg" alt="VX Lab at SIGGRAPH 2026" class="news-image">
                     </a>
                     <div class="item-text-container">
-                        <div class="item-name">VX Lab at SIGGRAPH 2026</div>
+                        <a href="#siggraph-2026" class="title-jump-link">
+                            <div class="item-name">VX Lab at SIGGRAPH 2026</div>
+                        </a>
                         <p class="item-description">
                             Most of the lab made it to SIGGRAPH this year, where we made a <a href="https://go.ncsu.edu/manifestotalk" target="_blank" rel="noopener noreferrer">presentation</a> at the HPG conference, demoed our <a href="https://doi.acm.org?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">near-zero latency work</a> at Emerging Technologies, and then made three presentations at the <a href="https://price-workshop.org/2026/" target="_blank" rel="noopener noreferrer">PRICE workshop</a>. Of course, the real highlights were meeting Jim Blinn and Turner Whitted!
                         </p>
@@ -230,7 +243,9 @@
                         <img src="pics/ben.i3d.jpg" alt="VX Lab at ACM I3D 2026" class="news-image">
                     </a>
                     <div class="item-text-container">
-                        <div class="item-name">vx lab at ACM I3D 2026</div>
+                        <a href="#i3d-2026" class="title-jump-link">
+                            <div class="item-name">vx lab at ACM I3D 2026</div>
+                        </a>
                         <p class="item-description">
                             The lab played an important part in organizing the <a href="https://i3dsymposium.org/2026/" target="_blank" rel="noopener noreferrer">I3DG Symposium</a> this year, with Prof. Watson Papers Co-Chair, and Arjun Madhusudan and Ashish Rajpurohit Publicity Co-Chairs. Prof. Watson also demoed the lab's <a href="https://doi.org/10.1145/3807895.3807936" target="_blank" rel="noopener noreferrer">near-zero latency work</a>, while Arjun and Ashish both presented their <a href="https://doi.org/10.1145/3807895.3807930" target="_blank" rel="noopener noreferrer">esports</a> <a href="https://doi.org/10.1145/3807895.3807931" target="_blank" rel="noopener noreferrer">research</a> in the posters session. We also spent a lot of time posing with baby Yoda and the Mandalorian — I3D was at Lucasfilm!
                         </p>
@@ -242,7 +257,9 @@
                         <img src="pics/evan.sid.png" alt="VX Lab at SID Display Week 2026" class="news-image">
                     </a>
                     <div class="item-text-container">
-                        <div class="item-name">vx lab at SID Display Week 2026</div>
+                        <a href="#display-week-2026" class="title-jump-link">
+                            <div class="item-name">vx lab at SID Display Week 2026</div>
+                        </a>
                         <p class="item-description">
                             Evan Jonson and Prof. Watson <a href="https://go.ncsu.edu/lowlatencydisplayslides" target="_blank" rel="noopener noreferrer">presented</a> their near-zero latency tech to Display Week this year, both as a <a href="https://go.ncsu.edu/nearzeropaper" target="_blank" rel="noopener noreferrer">paper</a> and a <a href="https://youtu.be/zViqs_4evNY?si=8l7kaW9MEgE99BsY" target="_blank" rel="noopener noreferrer">demo</a>. They received interest from Intel, Altera, Fuse Technologies and more.
                         </p>

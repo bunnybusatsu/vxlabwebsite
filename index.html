@@ -437,22 +437,26 @@
                                 // Check if the source item has an ID to create a jump link
                                 const itemId = currentItem.getAttribute('id');
                                 let finalImageElement = cleanImg;
+                                let finalTitleElement = titleNode.cloneNode(true);
 
                                 if (itemId) {
-                                    const jumpLink = document.createElement('a');
-                                    // Example: news/news.html#siggraph-2026
-                                    jumpLink.href = filePath + '#' + itemId; 
-                                    // Reuse the class to get that nice hover fade effect
-                                    jumpLink.className = 'image-jump-link'; 
-                                    jumpLink.appendChild(cleanImg);
-                                    finalImageElement = jumpLink;
+                                    // 1. Wrap the image in a cross-page jump link
+                                    const imgJumpLink = document.createElement('a');
+                                    imgJumpLink.href = filePath + '#' + itemId; 
+                                    imgJumpLink.className = 'image-jump-link'; 
+                                    imgJumpLink.appendChild(cleanImg);
+                                    finalImageElement = imgJumpLink;
+
+                                    // 2. Wrap the cloned title block in a cross-page title jump link
+                                    const titleJumpLink = document.createElement('a');
+                                    titleJumpLink.href = filePath + '#' + itemId;
+                                    titleJumpLink.className = 'title-jump-link';
+                                    titleJumpLink.appendChild(finalTitleElement);
+                                    finalTitleElement = titleJumpLink;
                                 }
                                 
-                                // Clone matching heading markup title node
-                                const cleanTitle = titleNode.cloneNode(true);
-                                
                                 newGridItem.appendChild(finalImageElement);
-                                newGridItem.appendChild(cleanTitle);
+                                newGridItem.appendChild(finalTitleElement);
                                 targetGrid.appendChild(newGridItem);
                             }
                         }
