@@ -303,7 +303,7 @@
         </section>
         
         <section id="team" class="content-section"> 
-            <h2 class="section-title">New Team Members (+ more)</h2> 
+            <h2 class="section-title"><a href="team/team.html">New Team Members (+ more)</a></h2> 
             <div id="dynamic-team-grid" class="content-grid"> 
                 
                 <div class="grid-item"> 
@@ -485,10 +485,10 @@
 
             function initializeDynamicLoading() {
                 // Load news container from news/news.html
-                loadContentFromSubpage('news/news.html', '#news .grid-item', 'dynamic-news-grid');
+                loadContentFromSubpage('news/news.html', '.grid-item', 'dynamic-news-grid');
                 
                 // Load team container from team/team.html
-                loadContentFromSubpage('team/team.html', '#news .grid-item', 'dynamic-team-grid');
+                loadContentFromSubpage('team/team.html', '.grid-item', 'dynamic-team-grid');
             }
 
             // Safe dual-execution strategy to handle lifecycle race conditions safely
@@ -499,7 +499,5 @@
             }
         })();
     </script>
-
-    
 </body> 
 </html>

@@ -16,6 +16,11 @@
             text-transform: uppercase; /* Forces all text to be ALL CAPS */ 
         } 
 
+        /* Smooth scrolling for anchor jump links */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Protect raw URL strings inside href tags from case distortion */
         a {
             text-transform: none !important;
@@ -102,6 +107,30 @@
             gap: 2.5rem; 
             align-items: start; 
         } 
+
+        /* Jump link wrappers styling */
+        .image-jump-link {
+            display: block;
+            width: 100%;
+            transition: opacity 0.2s ease;
+        }
+        .image-jump-link:hover {
+            opacity: 0.85;
+        }
+
+        .title-jump-link {
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.15s ease;
+            text-transform: uppercase !important;
+        }
+        .title-jump-link .item-name {
+            color: #555555;
+            transition: color 0.15s ease;
+        }
+        .title-jump-link:hover .item-name {
+            color: #d11a2a; /* Title turns crimson red on hover */
+        }
         
         /* Square Image & Placeholder Layout */ 
         .square-placeholder,
@@ -199,32 +228,44 @@
             <h2 class="section-title">Team</h2>
             <div class="content-grid">
                 
-                <div class="grid-item">
-                    <img src="pics/evan.jpeg" alt="Evan Jonson" class="headshot-image">
+                <div id="evan-jonson" class="grid-item">
+                    <a href="#evan-jonson" class="image-jump-link">
+                        <img src="pics/evan.jpeg" alt="Evan Jonson" class="headshot-image">
+                    </a>
                     <div class="item-text-container">
-                        <div class="item-name">Evan Jonson (MS)</div>
+                        <a href="#evan-jonson" class="title-jump-link">
+                            <div class="item-name">Evan Jonson (MS)</div>
+                        </a>
                         <p class="item-description">
-                            Evan is working on near-zero latency graphics systems. His current prototype displays a response to player or user input in less than 2 ms. He already has several publications, including at <a href="https://go.ncsu.edu/nearzeropaper" target="_blank" rel="noopener noreferrer">SID Display Week</a>, at <a href="https://doi.org/10.1145/3807895.3807936" target="_blank" rel="noopener noreferrer">ACM I3D</a>, and at both <a href="https://doi.acm.org/?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">Emerging Technologies</a> and the <a href="https://doi.acm.org?doi=3799828.3816007" target="_blank" rel="noopener noreferrer">PRICE Workshop</a> at SIGGRAPH.
+                            Evan is working on near-zero latency graphics systems. His current prototype displays a response to player or user input in less than 2 ms. He already has several publications, including at <a href="https://go.ncsu.edu/nearzeropaper" target="_blank" rel="noopener noreferrer">SID Display Week</a>, at <a href="https://doi.org/10.1145/3807895.3807936" target="_blank" rel="noopener noreferrer">ACM I3D</a>, and at both <a href="https://doi.acm.org/?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">Emerging Technologies</a> and the <a href="https://doi.acm.org?doi=3799828.3816007" target="_blank" rel="noopener noreferrer">PRICE Workshop</a> at SIGGRAPH. (<a href="https://www.linkedin.com/in/evan-jonson/" target="_blank" rel="noopener noreferrer">li</a>)
                         </p>
                     </div>
                 </div>
 
-                <div class="grid-item">
-                    <img src="pics/anuraag.jpeg" alt="Anuraag Jajoo" class="headshot-image">
+                <div id="anuraag-jajoo" class="grid-item">
+                    <a href="#anuraag-jajoo" class="image-jump-link">
+                        <img src="pics/anuraag.jpeg" alt="Anuraag Jajoo" class="headshot-image">
+                    </a>
                     <div class="item-text-container">
-                        <div class="item-name">Anuraag Jajoo (MS)</div>
+                        <a href="#anuraag-jajoo" class="title-jump-link">
+                            <div class="item-name">Anuraag Jajoo (MS)</div>
+                        </a>
                         <p class="item-description">
-                            Anuraag is studying the effect of typical levels of delay on video conferencing. He has also worked with Tianyu Wu on 3D display, publishing a Best Paper at <a href="https://doi.org/10.1002/jsid.2062" target="_blank" rel="noopener noreferrer">SID Display Week</a>.
+                            Anuraag is studying the effect of typical levels of delay on video conferencing. He has also worked with Tianyu Wu on 3D display, publishing a Best Paper at <a href="https://doi.org/10.1002/jsid.2062" target="_blank" rel="noopener noreferrer">SID Display Week</a>. (<a href="https://www.linkedin.com/in/anuraag-jajoo/" target="_blank" rel="noopener noreferrer">li</a>)
                         </p>
                     </div>
                 </div>
 
-                <div class="grid-item">
-                    <img src="pics/ashish.jpeg" alt="Ashish Rajpurohit" class="headshot-image">
+                <div id="ashish-rajpurohit" class="grid-item">
+                    <a href="#ashish-rajpurohit" class="image-jump-link">
+                        <img src="pics/ashish.jpeg" alt="Ashish Rajpurohit" class="headshot-image">
+                    </a>
                     <div class="item-text-container">
-                        <div class="item-name">Ashish Rajpurohit (PhD)</div>
+                        <a href="#ashish-rajpurohit" class="title-jump-link">
+                            <div class="item-name">Ashish Rajpurohit (PhD)</div>
+                        </a>
                         <p class="item-description">
-                            Ashish is learning about how competitive gamers configure their systems. He is addressing the following questions: do they favor temporal or spatial detail? Do they understand the systems settings they are configuring? Does their understanding influence their settings choices? He has published at <a href="https://doi.acm.org?doi=3807895.3807931" target="_blank" rel="noopener noreferrer">ACM I3D</a> and SIGGRAPH's <a href="https://doi.acm.org?doi=3799828.3816008" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>.
+                            Ashish is learning about how competitive gamers configure their systems. He is addressing the following questions: do they favor temporal or spatial detail? Do they understand the systems settings they are configuring? Does their understanding influence their settings choices? He has published at <a href="https://doi.acm.org?doi=3807895.3807931" target="_blank" rel="noopener noreferrer">ACM I3D</a> and SIGGRAPH's <a href="https://doi.acm.org?doi=3799828.3816008" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>. (<a href="https://www.linkedin.com/in/ashishsadanandrajpurohit/" target="_blank" rel="noopener noreferrer">li</a>)
                         </p>
                     </div>
                 </div>
