@@ -287,7 +287,7 @@
         
         <section id="team" class="content-section"> 
             <h2 class="section-title">New Team Members (+ more)</h2> 
-            <div class="content-grid"> 
+            <div id="dynamic-team-grid" class="content-grid"> 
                 
                 <div class="grid-item"> 
                     <a href="https://www.linkedin.com/in/evan-jonson/" target="_blank" rel="noopener noreferrer">
@@ -375,10 +375,10 @@
             <h2 class="section-title">Contact</h2>
             <div class="contact-text-box">
                 <p>
-                    In person, you can find us in our lab at NC State in Eng. Bldg. 2 room 2241 — you'll have to knock. We meet as a group most Fridays at 4 (a bit spotty in the summer). Every other week we gather in the lab and present research to one another. On the other weeks, we meet casually off campus, with Prof. Watson buying ice cream, coffee or beer.
+                    Online, you can reach us at <a href="mailto:visualexperience@ncsu.edu">visualexperience@ncsu.edu</a>. We have a lab slack, and you can request membership there.
                 </p>
                 <p>
-                    Online, you can reach us at <a href="mailto:visualexperience@ncsu.edu">visualexperience@ncsu.edu</a>. We have a lab slack, and you can request membership there.
+                    In person, you can find us in our lab at NC State in Eng. Bldg. 2 room 2241 — you'll have to knock. We meet as a group most Fridays at 4 (a bit spotty in the summer). Every other week we gather in the lab and present research to one another. On the other weeks, we meet casually off campus, with Prof. Watson buying ice cream, coffee or beer.
                 </p>
             </div>
         </section>
@@ -386,35 +386,38 @@
     </div>
 
     <script>
-        // Wrapped inside an Immediately Invoked Function Expression (IIFE) to prevent global pollution
         (function() {
-            async function loadNewsFromSubpage() {
-                // Safeguard check: Verify if we are running under file:// protocol
+            // Reusable asynchronous layout parser tool
+            async function loadContentFromSubpage(filePath, containerSelector, targetGridId) {
                 if (window.location.protocol === 'file:') {
-                    console.warn("VX Lab Note: Browser security blocks local fetch requests under the 'file://' protocol. To see dynamic parsing execution, host this project using a local dev server (e.g., VS Code Live Server extension). Showing static fallback links for now.");
+                    console.warn(`VX Lab Note: Fetch restrictions under file:// prevent dynamic parsing of ${filePath}. Host with a dev server to run.`);
+                    return;
                 }
 
                 try {
-                    const response = await fetch('news/news.html');
+                    const response = await fetch(filePath);
                     if (!response.ok) throw new Error(`HTTP error: ${response.status}`);
                     
                     const htmlText = await response.text();
                     const parser = new DOMParser();
                     const sourceDoc = parser.parseFromString(htmlText, 'text/html');
                     
-                    const sourceItems = sourceDoc.querySelectorAll('#news .grid-item');
-                    const targetGrid = document.getElementById('dynamic-news-grid');
+                    const sourceItems = sourceDoc.querySelectorAll(containerSelector);
+                    const targetGrid = document.getElementById(targetGridId);
                     
                     if (!targetGrid) {
-                        console.error("Target container #dynamic-news-grid was not found in the DOM.");
+                        console.error(`Target container #${targetGridId} was not found in the DOM.`);
                         return;
                     }
 
                     if (sourceItems.length > 0) {
-                        // Clear static placeholder nodes only when content is successfully fetched
+                        // Clear out fallback elements before drawing dynamic layout nodes
                         targetGrid.innerHTML = '';
                         
+                        // Extract prefix folder directory to properly re-base relative paths
+                        const directoryPrefix = filePath.substring(0, filePath.lastIndexOf('/') + 1);
                         const limit = Math.min(3, sourceItems.length);
+                        
                         for (let i = 0; i < limit; i++) {
                             const currentItem = sourceItems[i];
                             const imgNode = currentItem.querySelector('img');
@@ -424,15 +427,14 @@
                                 const newGridItem = document.createElement('div');
                                 newGridItem.className = 'grid-item';
                                 
-                                // Clone image node and update the reference directory path relative to root
+                                // Clone image node and fix directory reference relative to root
                                 const cleanImg = imgNode.cloneNode(true);
                                 const originalSrc = cleanImg.getAttribute('src');
-                                if (originalSrc && !originalSrc.startsWith('http') && !originalSrc.startsWith('news/')) {
-                                    cleanImg.setAttribute('src', 'news/' + originalSrc);
+                                if (originalSrc && !originalSrc.startsWith('http') && !originalSrc.startsWith(directoryPrefix)) {
+                                    cleanImg.setAttribute('src', directoryPrefix + originalSrc);
                                 }
-                                cleanImg.className = 'news-image';
                                 
-                                // Clone matching headline title block
+                                // Clone matching heading markup title node
                                 const cleanTitle = titleNode.cloneNode(true);
                                 
                                 newGridItem.appendChild(cleanImg);
@@ -442,15 +444,23 @@
                         }
                     }
                 } catch (error) {
-                    console.error('Failed to load dynamic news items:', error);
+                    console.error(`Failed to load dynamic items from ${filePath}:`, error);
                 }
             }
 
-            // Safe dual-execution strategy to handle race conditions during page load phases
+            function initializeDynamicLoading() {
+                // Load news container from news/news.html
+                loadContentFromSubpage('news/news.html', '#news .grid-item', 'dynamic-news-grid');
+                
+                // Load team container from team/team.html
+                loadContentFromSubpage('team/team.html', '#news .grid-item', 'dynamic-team-grid');
+            }
+
+            // Safe dual-execution strategy to handle lifecycle race conditions safely
             if (document.readyState === 'loading') {
-                document.addEventListener('DOMContentLoaded', loadNewsFromSubpage);
+                document.addEventListener('DOMContentLoaded', initializeDynamicLoading);
             } else {
-                loadNewsFromSubpage();
+                initializeDynamicLoading();
             }
         })();
     </script>
