@@ -385,7 +385,7 @@
         
     </div>
 
-    <script>
+<script>
         (function() {
             // Reusable asynchronous layout parser tool
             async function loadContentFromSubpage(filePath, containerSelector, targetGridId) {
@@ -434,10 +434,24 @@
                                     cleanImg.setAttribute('src', directoryPrefix + originalSrc);
                                 }
                                 
+                                // Check if the source item has an ID to create a jump link
+                                const itemId = currentItem.getAttribute('id');
+                                let finalImageElement = cleanImg;
+
+                                if (itemId) {
+                                    const jumpLink = document.createElement('a');
+                                    // Example: news/news.html#siggraph-2026
+                                    jumpLink.href = filePath + '#' + itemId; 
+                                    // Reuse the class to get that nice hover fade effect
+                                    jumpLink.className = 'image-jump-link'; 
+                                    jumpLink.appendChild(cleanImg);
+                                    finalImageElement = jumpLink;
+                                }
+                                
                                 // Clone matching heading markup title node
                                 const cleanTitle = titleNode.cloneNode(true);
                                 
-                                newGridItem.appendChild(cleanImg);
+                                newGridItem.appendChild(finalImageElement);
                                 newGridItem.appendChild(cleanTitle);
                                 targetGrid.appendChild(newGridItem);
                             }
@@ -464,5 +478,7 @@
             }
         })();
     </script>
+
+    
 </body> 
 </html>

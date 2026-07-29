@@ -16,6 +16,11 @@
             text-transform: uppercase; /* Forces all text to be ALL CAPS */ 
         } 
 
+        /* Smooth scrolling for anchor jump links */
+        html {
+            scroll-behavior: smooth;
+        }
+
         /* Protect raw URL strings inside href tags from case distortion */
         a {
             text-transform: none !important;
@@ -102,6 +107,16 @@
             gap: 2.5rem; 
             align-items: start; 
         } 
+
+        /* Image link container styling to keep image layout structure clean */
+        .image-jump-link {
+            display: block;
+            width: 100%;
+            transition: opacity 0.2s ease;
+        }
+        .image-jump-link:hover {
+            opacity: 0.85;
+        }
         
         /* Square Image & Placeholder Layout */ 
         .square-placeholder,
@@ -198,8 +213,10 @@
             <h2 class="section-title">News</h2>
             <div class="content-grid">
                 
-                <div class="grid-item">
-                    <img src="pics/arjun.ashish.blinn.jpg" alt="VX Lab at SIGGRAPH 2026" class="news-image">
+                <div id="siggraph-2026" class="grid-item">
+                    <a href="#siggraph-2026" class="image-jump-link">
+                        <img src="pics/arjun.ashish.blinn.jpg" alt="VX Lab at SIGGRAPH 2026" class="news-image">
+                    </a>
                     <div class="item-text-container">
                         <div class="item-name">VX Lab at SIGGRAPH 2026</div>
                         <p class="item-description">
@@ -208,8 +225,10 @@
                     </div>
                 </div>
 
-                <div class="grid-item">
-                    <img src="pics/ben.i3d.jpg" alt="VX Lab at ACM I3D 2026" class="news-image">
+                <div id="i3d-2026" class="grid-item">
+                    <a href="#i3d-2026" class="image-jump-link">
+                        <img src="pics/ben.i3d.jpg" alt="VX Lab at ACM I3D 2026" class="news-image">
+                    </a>
                     <div class="item-text-container">
                         <div class="item-name">vx lab at ACM I3D 2026</div>
                         <p class="item-description">
@@ -218,8 +237,10 @@
                     </div>
                 </div>
 
-                <div class="grid-item">
-                    <img src="pics/evan.sid.png" alt="VX Lab at SID Display Week 2026" class="news-image">
+                <div id="display-week-2026" class="grid-item">
+                    <a href="#display-week-2026" class="image-jump-link">
+                        <img src="pics/evan.sid.png" alt="VX Lab at SID Display Week 2026" class="news-image">
+                    </a>
                     <div class="item-text-container">
                         <div class="item-name">vx lab at SID Display Week 2026</div>
                         <p class="item-description">
