@@ -172,6 +172,23 @@
             object-fit: cover; /* Ensures the actual image fills the square cleanly */
             margin-bottom: 1.25rem; 
         }
+
+        /* Title Jump Link Styling for Dynamically Loaded Text */
+        .title-jump-link {
+            text-decoration: none; /* Removes the underline */
+            display: inline-block;
+            transition: color 0.15s ease;
+            text-transform: uppercase !important;
+        }
+
+        .title-jump-link .item-name {
+            color: #555555; /* Forces the text to stay the standard dark gray */
+            transition: color 0.15s ease;
+        }
+
+        .title-jump-link:hover .item-name {
+            color: #d11a2a; /* Turns the text crimson red when hovered */
+        }
         
         .item-name { 
             font-weight: 700; 
@@ -385,7 +402,7 @@
         
     </div>
 
-<script>
+    <script>
         (function() {
             // Reusable asynchronous layout parser tool
             async function loadContentFromSubpage(filePath, containerSelector, targetGridId) {
