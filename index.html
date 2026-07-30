@@ -23,8 +23,17 @@
         /* Homepage-Specific Styling */ 
         .top-nav { margin-top: 4.5rem; } 
         .top-nav ul { list-style: none; display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap; } 
-        .top-nav a { font-weight: 700; transition: color 0.2s ease; } 
-        .top-nav a:hover { color: #d11a2a; } 
+        .top-nav a { 
+            font-weight: 600; 
+            color: #d11a2a;
+            text-decoration: none;
+            letter-spacing: normal !important;
+            text-transform: none !important; /* Restores sentence/lowercase look */
+            transition: opacity 0.2s ease; 
+        } 
+        .top-nav a:hover { 
+            opacity: 0.8; 
+        } 
         
         .section-title { font-weight: 700; margin-bottom: 2rem; color: #d11a2a; } 
         .section-title a { color: inherit; text-decoration: none; text-transform: uppercase !important; transition: opacity 0.2s ease; }
