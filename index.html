@@ -1,254 +1,50 @@
 <!DOCTYPE html> 
 <html lang="en"> 
 <head> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>VISUAL EXPERIENCE LAB</title> 
-    <link rel="preconnect" href="https://googleapis.com"> 
-    <link rel="preconnect" href="https://gstatic.com" crossorigin> 
-    <link href="https://googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"> 
+    <script>
+        (async function() {
+            try {
+                const response = await fetch('common-head.html'); 
+                const htmlText = await response.text();
+                document.head.insertAdjacentHTML('afterbegin', htmlText);
+            } catch (error) {
+                console.error("Failed to load common head tags:", error);
+            }
+        })();
+    </script>
+
     <style> 
-        /* Base Overrides */ 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            text-transform: uppercase; /* Forces all text to be ALL CAPS */ 
-        } 
-
-        /* Protect raw URL strings inside href tags from case distortion */
-        a {
-            text-transform: none !important;
-        }
-
-        body { 
-            font-family: 'Montserrat', sans-serif; /* Forces Montserrat font */ 
-            background-color: #ffffff; /* Pure white background */ 
-            line-height: 1.8; /* Generous line-height for tracking */ 
-            padding: 4rem 1.5rem; 
-        } 
-
-        /* Centered Layout Wrapper */ 
-        .wrapper { 
-            max-width: 1000px; 
-            margin: 0 auto; 
-            text-align: center; 
-        } 
-
-        /* Large, Medium-Bold (600), Bright Red Title Container */ 
-        .lab-title { 
-            font-size: 3.75rem; 
-            margin-bottom: 2.5rem; 
-        } 
-
-        /* Title Link Styling to preserve the look and behavior */
-        .title-link {
-            text-decoration: none;
-            font-weight: 600; 
-            color: #d11a2a; /* Brighter crimson red */ 
-            letter-spacing: 0.15em; /* Wide letter-spacing to match the image */ 
-            transition: opacity 0.2s ease;
-            text-transform: uppercase !important; 
-        }
-        .title-link:hover {
-            opacity: 0.8;
-        }
-
-        /* Uniform Dark Gray Subtext Rules - Scaled up 20% from 0.85rem to 1.02rem */ 
-        .lab-lead, 
-        .lab-tagline, 
-        .top-nav a, 
-        .section-title, 
-        .item-name,
-        .member-degree { 
-            font-size: 1.02rem; /* Uniform text sizing across all elements */ 
-            color: #555555; /* Muted dark gray */ 
-            font-weight: 500; 
-            letter-spacing: 0.25em; /* Intentional, wide letter-spacing */ 
-        } 
-
-        .lab-lead { 
-            margin-bottom: 2.5rem; 
-            line-height: 2; 
-        } 
-
-        .lab-tagline { 
-            max-width: 850px; 
-            margin: 0 auto; 
-        } 
-
-        /* Navigation Setup */ 
-        .top-nav { 
-            margin-top: 4.5rem; 
-        } 
-        .top-nav ul { 
-            list-style: none; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            gap: 2.5rem; 
-            flex-wrap: wrap; 
-        } 
-        .top-nav a { 
-            text-decoration: none; 
-            font-weight: 700; 
-            transition: color 0.2s ease; 
-            text-transform: uppercase !important; 
-        } 
-        .top-nav a:hover { 
-            color: #d11a2a; 
-        } 
-
-        /* Layout Content Sections (News & Team) */ 
-        .content-section { 
-            margin-top: 6rem; 
-            padding-top: 2rem; 
-        } 
-        .section-title { 
-            font-weight: 700; 
-            margin-bottom: 2rem; 
-            color: #d11a2a; /* Red section headings */ 
-        } 
+        /* Homepage-Specific Styling */ 
+        .top-nav { margin-top: 4.5rem; } 
+        .top-nav ul { list-style: none; display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap; } 
+        .top-nav a { font-weight: 700; transition: color 0.2s ease; } 
+        .top-nav a:hover { color: #d11a2a; } 
         
-        /* Heading Link Specific Override to Maintain Section Layout Style */
-        .section-title a {
-            color: inherit;
-            text-decoration: none;
-            text-transform: uppercase !important;
-            transition: opacity 0.2s ease;
-        }
-        .section-title a:hover {
-            opacity: 0.8;
-        }
+        .section-title { font-weight: 700; margin-bottom: 2rem; color: #d11a2a; } 
+        .section-title a { color: inherit; text-decoration: none; text-transform: uppercase !important; transition: opacity 0.2s ease; }
+        .section-title a:hover { opacity: 0.8; }
         
-        /* Subtitle Styling for specific sections like Publications */
-        .section-subtitle {
-            margin-top: -1.5rem; /* Pulls it closer to the h2 above it */
-            margin-bottom: 2.5rem;
-            font-size: 0.95rem; /* Slightly smaller than the main text */
-            font-weight: 500;
-            color: #555555;
-            letter-spacing: 0.25em;
-        }
-        .section-subtitle a {
-            color: inherit;
-            text-decoration: none;
-            transition: color 0.15s ease;
-            text-transform: uppercase !important;
-        }
-        .section-subtitle a:hover {
-            color: #d11a2a;
-        }
+        .section-subtitle { margin-top: -1.5rem; margin-bottom: 2.5rem; font-size: 0.95rem; font-weight: 500; color: #555555; letter-spacing: 0.25em; }
+        .section-subtitle a { color: inherit; text-decoration: none; transition: color 0.15s ease; text-transform: uppercase !important; }
+        .section-subtitle a:hover { color: #d11a2a; }
 
-        .content-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 2.5rem; 
-            max-width: 800px; 
-            margin: 0 auto; 
-        } 
-        .grid-item { 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-        } 
+        .content-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 800px; margin: 0 auto; } 
+        .grid-item { display: flex; flex-direction: column; align-items: center; } 
         
-        /* Square Image & Placeholder Layout */ 
-        .square-placeholder,
-        .headshot-image,
-        .research-image,
-        .news-image,
-        .pub-image { 
-            width: 100%; 
-            aspect-ratio: 1 / 1; /* Forces strict square box proportion */ 
-            background-color: #f3f4f6; /* Soft, light gray background fallback */ 
-            margin-bottom: 1.25rem; 
-            border: 1px solid #e5e7eb; 
-        } 
-        .headshot-image,
-        .news-image,
-        .research-image,
-        .pub-image {
-            object-fit: cover; /* Ensures the actual image fills the square cleanly */
-            margin-bottom: 1.25rem; 
-        }
-
-        /* Title Jump Link Styling for Dynamically Loaded Text */
-        .title-jump-link {
-            text-decoration: none; /* Removes the underline */
-            display: inline-block;
-            transition: color 0.15s ease;
-            text-transform: uppercase !important;
-        }
-
-        .title-jump-link .item-name {
-            color: #555555; /* Forces the text to stay the standard dark gray */
-            transition: color 0.15s ease;
-        }
-
-        .title-jump-link:hover .item-name {
-            color: #d11a2a; /* Turns the text crimson red when hovered */
-        }
+        .square-placeholder, .headshot-image, .research-image, .news-image, .pub-image { margin-bottom: 1.25rem; } 
+        .item-name { text-align: center; } 
         
-        .item-name { 
-            font-weight: 700; 
-            line-height: 1.4; 
-            text-align: center;
-        } 
-
-        .member-degree { 
-            margin-top: 0.1rem; 
-            line-height: 1.4; 
-        } 
-
-        /* Clean Link Styling for the Team Member Names */ 
-        .member-link { 
-            text-decoration: none; 
-            color: inherit; /* Inherits the standard dark gray */ 
-            transition: color 0.15s ease; 
-            text-transform: uppercase !important; 
-        } 
-        .member-link:hover { 
-            color: #d11a2a; /* Changes to crimson red on hover */ 
-        } 
-
-        /* Contact Section Specific Styling */
-        .contact-text-box {
-            font-size: 1.02rem;
-            color: #555555;
-            font-weight: 400; /* Adjusted to standard weight for text blocks */
-            letter-spacing: normal; /* Removes the rigid tracking so justification spaces naturally */
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: justify; /* Forces proportional spacing/justification */
-            line-height: 2;
-        }
-        /* Safely target all text elements inside the contact box to override the global uppercase rule */
-        .contact-text-box,
-        .contact-text-box p,
-        .contact-text-box a {
-            text-transform: none !important; 
-        }
-        .contact-text-box p {
-            margin-bottom: 2rem;
-        }
-        .contact-text-box a {
-            color: #d11a2a;
-            text-decoration: none;
-            font-weight: 600;
-            transition: opacity 0.2s ease;
-        }
-        .contact-text-box a:hover {
-            opacity: 0.8;
-        }
-
-        /* Responsive grid shift for tablets or phones */ 
+        .member-link { text-decoration: none; color: inherit; transition: color 0.15s ease; text-transform: uppercase !important; } 
+        .member-link:hover { color: #d11a2a; } 
+        
+        .contact-text-box { font-size: 1.02rem; color: #555555; font-weight: 400; letter-spacing: normal; max-width: 800px; margin: 0 auto; text-align: justify; line-height: 2; }
+        .contact-text-box, .contact-text-box p, .contact-text-box a { text-transform: none !important; }
+        .contact-text-box p { margin-bottom: 2rem; }
+        .contact-text-box a { color: #d11a2a; text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; }
+        .contact-text-box a:hover { opacity: 0.8; }
+        
         @media (max-width: 768px) { 
-            .content-grid { 
-                grid-template-columns: 1fr; 
-                gap: 4rem; 
-                max-width: 250px; 
-            } 
+            .content-grid { grid-template-columns: 1fr; gap: 4rem; max-width: 250px; } 
         } 
     </style> 
 </head> 
@@ -282,83 +78,17 @@
 
         <section id="news" class="content-section">
             <h2 class="section-title"><a href="news/news.html">Recent News (+ more)</a></h2>
-            <div id="dynamic-news-grid" class="content-grid">
-                
-                <div class="grid-item">
-                    <img src="news/pics/arjun.ashish.blinn.jpg" alt="VX Lab at SIGGRAPH 2026" class="news-image">
-                    <div class="item-name">VX Lab at SIGGRAPH 2026</div>
-                </div>
-
-                <div class="grid-item">
-                    <img src="news/pics/ben.i3d.jpg" alt="VX Lab at ACM I3D 2026" class="news-image">
-                    <div class="item-name">vx lab at<br>ACM I3D 2026</div>
-                </div>
-
-                <div class="grid-item">
-                    <img src="news/pics/evan.sid.png" alt="VX Lab at SID Display Week 2026" class="news-image">
-                    <div class="item-name">vx lab at<br>SID Display Week 2026</div>
-                </div>
-
-            </div>
+            <div id="dynamic-news-grid" class="content-grid"></div>
         </section>
         
         <section id="team" class="content-section"> 
             <h2 class="section-title"><a href="team/team.html">New Team Members (+ more)</a></h2> 
-            <div id="dynamic-team-grid" class="content-grid"> 
-                
-                <div class="grid-item"> 
-                    <a href="https://www.linkedin.com/in/evan-jonson/" target="_blank" rel="noopener noreferrer">
-                        <img src="team/pics/evan.jpeg" alt="Evan Jonson Headshot" class="headshot-image"> 
-                    </a>
-                    <div class="item-name"> 
-                        <a href="https://www.linkedin.com/in/evan-jonson/" target="_blank" rel="noopener noreferrer" class="member-link">Evan Jonson</a> 
-                    </div> 
-                    <div class="member-degree">(MS)</div>
-                </div> 
-
-                <div class="grid-item"> 
-                    <a href="https://www.linkedin.com/in/anuraag-jajoo/" target="_blank" rel="noopener noreferrer">
-                        <img src="team/pics/anuraag.jpeg" alt="Anuraag Jajoo Headshot" class="headshot-image"> 
-                    </a>
-                    <div class="item-name"> 
-                        <a href="https://www.linkedin.com/in/anuraag-jajoo/" target="_blank" rel="noopener noreferrer" class="member-link">Anuraag Jajoo</a> 
-                    </div> 
-                    <div class="member-degree">(MS)</div>
-                </div> 
-
-                <div class="grid-item"> 
-                    <a href="https://www.linkedin.com/in/ashishsadanandrajpurohit/" target="_blank" rel="noopener noreferrer">
-                        <img src="team/pics/ashish.jpeg" alt="Ashish Rajpurohit Headshot" class="headshot-image"> 
-                    </a>
-                    <div class="item-name"> 
-                        <a href="https://www.linkedin.com/in/ashishsadanandrajpurohit/" target="_blank" rel="noopener noreferrer" class="member-link">Ashish Rajpurohit</a> 
-                    </div> 
-                    <div class="member-degree">(PhD)</div>
-                </div> 
-                
-            </div> 
+            <div id="dynamic-team-grid" class="content-grid"></div> 
         </section>
 
         <section id="research" class="content-section">
             <h2 class="section-title"><a href="research/research.html">Recent Research (+ more)</a></h2>
-            <div id="dynamic-research-grid" class="content-grid">
-                
-                <div class="grid-item">
-                    <img src="research/pics/dota2.png" alt="Games Research" class="research-image">
-                    <div class="item-name">Games</div>
-                </div>
-
-                <div class="grid-item">
-                    <img src="research/pics/near.zero.latency.png" alt="Graphics Research" class="research-image">
-                    <div class="item-name">Graphics</div>
-                </div>
-
-                <div class="grid-item">
-                    <img src="research/pics/visualization.webp" alt="Visualization Research" class="research-image">
-                    <div class="item-name">Visualization</div>
-                </div>
-
-            </div>
+            <div id="dynamic-research-grid" class="content-grid"></div>
         </section>
 
         <section id="publications" class="content-section">
@@ -368,24 +98,7 @@
                 <a href="https://scholar.google.com/citations?hl=en&user=yfYYAMQAAAAJ" target="_blank" rel="noopener noreferrer">gscholar</a> &nbsp;|&nbsp; <a href="https://arxiv.org/a/watson_b_1.html" target="_blank" rel="noopener noreferrer">arxiv</a>
             </div>
 
-            <div id="dynamic-publications-grid" class="content-grid">
-                
-                <div class="grid-item">
-                    <img src="publications/pics/near.zero.latency.png" alt="Near-zero latency graphics" class="pub-image">
-                    <div class="item-name">Near-Zero Latency Graphics</div>
-                </div>
-
-                <div class="grid-item">
-                    <img src="publications/pics/raytracing.for.lfds.png" alt="Wide fov 3D display" class="pub-image">
-                    <div class="item-name">Wide FOV 3D Display</div>
-                </div>
-
-                <div class="grid-item">
-                    <img src="publications/pics/random.scan.png" alt="Stochastic display scanning" class="pub-image">
-                    <div class="item-name">Stochastic Display Scanning</div>
-                </div>
-
-            </div>
+            <div id="dynamic-publications-grid" class="content-grid"></div>
         </section>
 
         <section id="contact" class="content-section">
@@ -428,10 +141,7 @@
                     }
 
                     if (sourceItems.length > 0) {
-                        // Clear out fallback elements before drawing dynamic layout nodes
                         targetGrid.innerHTML = '';
-                        
-                        // Extract prefix folder directory to properly re-base relative paths
                         const directoryPrefix = filePath.substring(0, filePath.lastIndexOf('/') + 1);
                         const limit = Math.min(3, sourceItems.length);
                         
@@ -444,27 +154,23 @@
                                 const newGridItem = document.createElement('div');
                                 newGridItem.className = 'grid-item';
                                 
-                                // Clone image node and fix directory reference relative to root
                                 const cleanImg = imgNode.cloneNode(true);
                                 const originalSrc = cleanImg.getAttribute('src');
                                 if (originalSrc && !originalSrc.startsWith('http') && !originalSrc.startsWith(directoryPrefix)) {
                                     cleanImg.setAttribute('src', directoryPrefix + originalSrc);
                                 }
                                 
-                                // Check if the source item has an ID to create a jump link
                                 const itemId = currentItem.getAttribute('id');
                                 let finalImageElement = cleanImg;
                                 let finalTitleElement = titleNode.cloneNode(true);
 
                                 if (itemId) {
-                                    // 1. Wrap the image in a cross-page jump link
                                     const imgJumpLink = document.createElement('a');
                                     imgJumpLink.href = filePath + '#' + itemId; 
                                     imgJumpLink.className = 'image-jump-link'; 
                                     imgJumpLink.appendChild(cleanImg);
                                     finalImageElement = imgJumpLink;
 
-                                    // 2. Wrap the cloned title block in a cross-page title jump link
                                     const titleJumpLink = document.createElement('a');
                                     titleJumpLink.href = filePath + '#' + itemId;
                                     titleJumpLink.className = 'title-jump-link';
@@ -484,20 +190,12 @@
             }
 
             function initializeDynamicLoading() {
-                // Load news container from news/news.html
                 loadContentFromSubpage('news/news.html', '.grid-item', 'dynamic-news-grid');
-                
-                // Load team container from team/team.html
                 loadContentFromSubpage('team/team.html', '.grid-item', 'dynamic-team-grid');
-
-                // Load research container from research/research.html
                 loadContentFromSubpage('research/research.html', '.grid-item', 'dynamic-research-grid');
-
-                // Load publications container from publications/publications.html
                 loadContentFromSubpage('publications/publications.html', '.grid-item', 'dynamic-publications-grid');
             }
 
-            // Safe dual-execution strategy to handle lifecycle race conditions safely
             if (document.readyState === 'loading') {
                 document.addEventListener('DOMContentLoaded', initializeDynamicLoading);
             } else {
