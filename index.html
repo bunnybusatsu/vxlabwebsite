@@ -23,16 +23,17 @@
         /* Homepage-Specific Styling */ 
         .top-nav { margin-top: 4.5rem; } 
         .top-nav ul { list-style: none; display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap; } 
+        
+        /* Inherits size (1.02rem) and letter-spacing (0.25em) from common-head.html */
         .top-nav a { 
-            font-weight: 600; 
-            color: #d11a2a;
+            font-weight: 700; 
+            color: #d11a2a; 
             text-decoration: none;
-            letter-spacing: normal !important;
-            text-transform: none !important; /* Restores sentence/lowercase look */
-            transition: opacity 0.2s ease; 
+            text-transform: uppercase !important; 
+            transition: color 0.2s ease; 
         } 
         .top-nav a:hover { 
-            opacity: 0.8; 
+            color: #555555; 
         } 
         
         .section-title { font-weight: 700; margin-bottom: 2rem; color: #d11a2a; } 
