@@ -1,0 +1,278 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <meta charset="UTF-8"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>VISUAL EXPERIENCE LAB</title> 
+    <link rel="preconnect" href="https://googleapis.com"> 
+    <link rel="preconnect" href="https://gstatic.com" crossorigin> 
+    <link href="https://googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet"> 
+    <style> 
+        /* Base Overrides */ 
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            text-transform: uppercase; /* Forces all text to be ALL CAPS */ 
+        } 
+
+        /* Smooth scrolling for anchor jump links */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Protect raw URL strings inside href tags from case distortion */
+        a {
+            text-transform: none !important;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; /* Forces Montserrat font */ 
+            background-color: #ffffff; /* Pure white background */ 
+            line-height: 1.8; /* Generous line-height for tracking */ 
+            padding: 4rem 1.5rem; 
+        } 
+
+        /* Centered Layout Wrapper */ 
+        .wrapper { 
+            max-width: 1000px; 
+            margin: 0 auto; 
+            text-align: center; 
+        } 
+
+        /* Large, Medium-Bold (600), Bright Red Title Container */ 
+        .lab-title { 
+            font-size: 3.75rem; 
+            margin-bottom: 2.5rem; 
+        } 
+
+        /* Title Link Styling to preserve the look and behavior */
+        .title-link {
+            text-decoration: none;
+            font-weight: 600; 
+            color: #d11a2a; /* Brighter crimson red */ 
+            letter-spacing: 0.15em; /* Wide letter-spacing to match the image */ 
+            transition: opacity 0.2s ease;
+            text-transform: uppercase !important; 
+        }
+        .title-link:hover {
+            opacity: 0.8;
+        }
+
+        /* Uniform Dark Gray Subtext Rules - Scaled up 20% from 0.85rem to 1.02rem */ 
+        .lab-lead, 
+        .lab-tagline, 
+        .section-title, 
+        .item-name,
+        .member-degree { 
+            font-size: 1.02rem; /* Uniform text sizing across all elements */ 
+            color: #555555; /* Muted dark gray */ 
+            font-weight: 500; 
+            letter-spacing: 0.25em; /* Intentional, wide letter-spacing */ 
+        } 
+
+        .lab-lead { 
+            margin-bottom: 2.5rem; 
+            line-height: 2; 
+        } 
+
+        .lab-tagline { 
+            max-width: 850px; 
+            margin: 0 auto; 
+        } 
+
+        /* Layout Content Sections (News & Team) */ 
+        .content-section { 
+            margin-top: 6rem; 
+            padding-top: 2rem; 
+        } 
+        .section-title { 
+            font-weight: 700; 
+            margin-bottom: 3.5rem; 
+            color: #d11a2a; /* Red section headings */ 
+        } 
+        
+        .content-grid { 
+            display: grid; 
+            grid-template-columns: 1fr; 
+            gap: 3.5rem; 
+            max-width: 850px; 
+            margin: 0 auto; 
+        } 
+
+        /* Formats each item as side-by-side: Image on Left, Content on Right */
+        .grid-item { 
+            display: grid; 
+            grid-template-columns: 200px 1fr; 
+            gap: 2.5rem; 
+            align-items: start; 
+        } 
+
+        /* Jump link wrappers styling */
+        .image-jump-link {
+            display: block;
+            width: 100%;
+            transition: opacity 0.2s ease;
+        }
+        .image-jump-link:hover {
+            opacity: 0.85;
+        }
+
+        .title-jump-link {
+            text-decoration: none;
+            display: inline-block;
+            transition: color 0.15s ease;
+            text-transform: uppercase !important;
+        }
+        .title-jump-link .item-name {
+            color: #555555;
+            transition: color 0.15s ease;
+        }
+        .title-jump-link:hover .item-name {
+            color: #d11a2a; /* Title turns crimson red on hover */
+        }
+        
+        /* Square Image & Placeholder Layout */ 
+        .square-placeholder,
+        .headshot-image,
+        .research-image,
+        .news-image,
+        .pub-image { 
+            width: 100%; 
+            aspect-ratio: 1 / 1; /* Forces strict square box proportion */ 
+            background-color: #f3f4f6; /* Soft, light gray background fallback */ 
+            border: 1px solid #e5e7eb; 
+        } 
+        .headshot-image,
+        .news-image,
+        .research-image,
+        .pub-image {
+            object-fit: cover; /* Ensures the actual image fills the square cleanly */
+        } 
+        
+        /* Text grouping layout block */
+        .item-text-container {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            text-align: left;
+        }
+
+        .item-name { 
+            font-weight: 700; 
+            line-height: 1.4; 
+            margin-bottom: 0.75rem;
+        } 
+
+        .item-description {
+            font-size: 1.02rem;
+            color: #555555;
+            font-weight: 400; 
+            line-height: 1.7;
+            text-align: justify; 
+            text-transform: none !important; /* Forces normal sentence case */
+            letter-spacing: normal !important; 
+        }
+        
+        /* Inline link styles to preserve page color hierarchy */
+        .item-description a {
+            color: #d11a2a;
+            text-decoration: none;
+            font-weight: 600;
+            transition: opacity 0.2s ease;
+            text-transform: none !important;
+        }
+        .item-description a:hover {
+            opacity: 0.8;
+        }
+
+        .member-degree { 
+            margin-top: 0.1rem; 
+            line-height: 1.4; 
+        } 
+
+        /* Responsive grid shift for tablets or phones */ 
+        @media (max-width: 768px) { 
+            .grid-item { 
+                grid-template-columns: 1fr; 
+                gap: 1.5rem; 
+                justify-items: center;
+            } 
+            .item-text-container {
+                align-items: center;
+                text-align: center;
+            }
+        } 
+    </style> 
+</head> 
+    
+<body> 
+    <div class="wrapper"> 
+        <header> 
+            <h1 class="lab-title">
+                <a href="../index.html" class="title-link">Visual Experience Lab</a>
+            </h1> 
+            
+            <div class="lab-lead"> 
+                Benjamin Watson, Lead<br> 
+                Assoc Prof Comp Sci NCSU 
+            </div> 
+            
+            <p class="lab-tagline"> 
+                Visual technology that moves us —<br> 
+                how digital images affect emotion, thinking & behavior 
+            </p> 
+        </header> 
+
+        <section id="research" class="content-section">
+            <h2 class="section-title">Research</h2>
+            <div class="content-grid">
+                
+                <div id="games" class="grid-item">
+                    <a href="#games" class="image-jump-link">
+                        <img src="pics/dota2.png" alt="Games" class="research-image">
+                    </a>
+                    <div class="item-text-container">
+                        <a href="#games" class="title-jump-link">
+                            <div class="item-name">Games</div>
+                        </a>
+                        <p class="item-description">
+                            We are interested in improving gamer performance and experience, both for games themselves, and for other high-performance applications such as drone piloting, training and AR/VR. We have published this work at SIGGRAPH, CHI Play, ACM I3D, Computer Graphics Forum, and more.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="graphics" class="grid-item">
+                    <a href="#graphics" class="image-jump-link">
+                        <img src="pics/near.zero.latency.png" alt="Graphics" class="research-image">
+                    </a>
+                    <div class="item-text-container">
+                        <a href="#graphics" class="title-jump-link">
+                            <div class="item-name">Graphics</div>
+                        </a>
+                        <p class="item-description">
+                            We are interested in engineering new systems that achieve higher temporal realism (e.g. lower latency) — which is greatly underappreciated. Some of our work in this area has been published as a book, and at SIGGRAPH, ACM CHI, Eurographics, EGSR, and ACM I3D.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="visualization" class="grid-item">
+                    <a href="#visualization" class="image-jump-link">
+                        <img src="pics/visualization.webp" alt="Visualization" class="research-image">
+                    </a>
+                    <div class="item-text-container">
+                        <a href="#visualization" class="title-jump-link">
+                            <div class="item-name">Visualization</div>
+                        </a>
+                        <p class="item-description">
+                            We study the communicative potential of visualization. We have published this work at IEEE Visualization, IEEE CG&A and ACM Mobile HCI.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        
+    </div> 
+</body> 
+</html>

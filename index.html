@@ -340,8 +340,8 @@
         </section>
 
         <section id="research" class="content-section">
-            <h2 class="section-title">Recent Research (+ more)</h2>
-            <div class="content-grid">
+            <h2 class="section-title"><a href="research/research.html">Recent Research (+ more)</a></h2>
+            <div id="dynamic-research-grid" class="content-grid">
                 
                 <div class="grid-item">
                     <img src="research/pics/dota2.png" alt="Games Research" class="research-image">
@@ -489,6 +489,9 @@
                 
                 // Load team container from team/team.html
                 loadContentFromSubpage('team/team.html', '.grid-item', 'dynamic-team-grid');
+
+                // Load research container from research/research.html
+                loadContentFromSubpage('research/research.html', '.grid-item', 'dynamic-research-grid');
             }
 
             // Safe dual-execution strategy to handle lifecycle race conditions safely
