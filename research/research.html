@@ -7,41 +7,35 @@
                 const response = await fetch('../common-head.html'); 
                 const htmlText = await response.text();
                 document.head.insertAdjacentHTML('afterbegin', htmlText);
+                setTimeout(() => { document.body.style.opacity = '1'; }, 50);
             } catch (error) {
                 console.error("Failed to load common head tags:", error);
+                document.body.style.opacity = '1';
             }
         })();
     </script>
 
     <style> 
-        /* Subpage-Specific Styling */ 
         .section-title { font-weight: 700; margin-bottom: 3.5rem; color: #d11a2a; } 
-        
         .content-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; max-width: 850px; margin: 0 auto; } 
         .grid-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; align-items: start; } 
-        
         .image-jump-link { display: block; width: 100%; transition: opacity 0.2s ease; }
         .image-jump-link:hover { opacity: 0.85; }
-        
         .item-text-container { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
         .item-name { margin-bottom: 0.75rem; transition: color 0.15s ease; } 
-        
         .item-description { font-size: 1.02rem; color: #555555; font-weight: 400; line-height: 1.7; text-align: justify; text-transform: none !important; letter-spacing: normal !important; }
         .item-description a { color: #d11a2a; text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; text-transform: none !important; }
         .item-description a:hover { opacity: 0.8; }
-        
         @media (max-width: 768px) { 
             .grid-item { grid-template-columns: 1fr; gap: 1.5rem; justify-items: center; } 
             .item-text-container { align-items: center; text-align: center; } 
         } 
     </style> 
 </head> 
-<body> 
+<body style="opacity: 0; transition: opacity 0.3s ease;"> 
     <div class="wrapper"> 
         <header> 
-            <h1 class="lab-title">
-                <a href="../index.html" class="title-link">Visual Experience Lab</a>
-            </h1> 
+            <h1 class="lab-title"><a href="../index.html" class="title-link">Visual Experience Lab</a></h1> 
             <div class="lab-lead"> Benjamin Watson, Lead<br> Assoc Prof Comp Sci NCSU </div> 
             <p class="lab-tagline"> Visual technology that moves us —<br> how digital images affect emotion, thinking & behavior </p> 
         </header> 
@@ -49,52 +43,29 @@
         <section id="research" class="content-section">
             <h2 class="section-title">Research</h2>
             <div class="content-grid">
-                
                 <div id="games" class="grid-item">
-                    <a href="#games" class="image-jump-link">
-                        <img src="pics/dota2.png" alt="Games" class="research-image">
-                    </a>
+                    <a href="#games" class="image-jump-link"><img src="pics/dota2.png" alt="Games" class="research-image"></a>
                     <div class="item-text-container">
-                        <a href="#games" class="title-jump-link">
-                            <div class="item-name">Games</div>
-                        </a>
-                        <p class="item-description">
-                            We are interested in improving gamer performance and experience, both for games themselves, and for other high-performance applications such as drone piloting, training and AR/VR. We have published this work at SIGGRAPH, CHI Play, ACM I3D, Computer Graphics Forum, and more.
-                        </p>
+                        <a href="#games" class="title-jump-link"><div class="item-name">Games</div></a>
+                        <p class="item-description">We are interested in improving gamer performance and experience, both for games themselves, and for other high-performance applications such as drone piloting, training and AR/VR. We have published this work at SIGGRAPH, CHI Play, ACM I3D, Computer Graphics Forum, and more.</p>
                     </div>
                 </div>
-
                 <div id="graphics" class="grid-item">
-                    <a href="#graphics" class="image-jump-link">
-                        <img src="pics/near.zero.latency.png" alt="Graphics" class="research-image">
-                    </a>
+                    <a href="#graphics" class="image-jump-link"><img src="pics/near.zero.latency.png" alt="Graphics" class="research-image"></a>
                     <div class="item-text-container">
-                        <a href="#graphics" class="title-jump-link">
-                            <div class="item-name">Graphics</div>
-                        </a>
-                        <p class="item-description">
-                            We are interested in engineering new systems that achieve higher temporal realism (e.g. lower latency) — which is greatly underappreciated. Some of our work in this area has been published as a book, and at SIGGRAPH, ACM CHI, Eurographics, EGSR, and ACM I3D.
-                        </p>
+                        <a href="#graphics" class="title-jump-link"><div class="item-name">Graphics</div></a>
+                        <p class="item-description">We are interested in engineering new systems that achieve higher temporal realism (e.g. lower latency) — which is greatly underappreciated. Some of our work in this area has been published as a book, and at SIGGRAPH, ACM CHI, Eurographics, EGSR, and ACM I3D.</p>
                     </div>
                 </div>
-
                 <div id="visualization" class="grid-item">
-                    <a href="#visualization" class="image-jump-link">
-                        <img src="pics/visualization.webp" alt="Visualization" class="research-image">
-                    </a>
+                    <a href="#visualization" class="image-jump-link"><img src="pics/visualization.webp" alt="Visualization" class="research-image"></a>
                     <div class="item-text-container">
-                        <a href="#visualization" class="title-jump-link">
-                            <div class="item-name">Visualization</div>
-                        </a>
-                        <p class="item-description">
-                            We study the communicative potential of visualization. We have published this work at IEEE Visualization, IEEE CG&A and ACM Mobile HCI.
-                        </p>
+                        <a href="#visualization" class="title-jump-link"><div class="item-name">Visualization</div></a>
+                        <p class="item-description">We study the communicative potential of visualization. We have published this work at IEEE Visualization, IEEE CG&A and ACM Mobile HCI.</p>
                     </div>
                 </div>
-
             </div>
         </section>
-        
     </div> 
 </body> 
 </html>

@@ -7,41 +7,35 @@
                 const response = await fetch('../common-head.html'); 
                 const htmlText = await response.text();
                 document.head.insertAdjacentHTML('afterbegin', htmlText);
+                setTimeout(() => { document.body.style.opacity = '1'; }, 50);
             } catch (error) {
                 console.error("Failed to load common head tags:", error);
+                document.body.style.opacity = '1';
             }
         })();
     </script>
 
     <style> 
-        /* Subpage-Specific Styling */ 
         .section-title { font-weight: 700; margin-bottom: 3.5rem; color: #d11a2a; } 
-        
         .content-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; max-width: 850px; margin: 0 auto; } 
         .grid-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; align-items: start; } 
-        
         .image-jump-link { display: block; width: 100%; transition: opacity 0.2s ease; }
         .image-jump-link:hover { opacity: 0.85; }
-        
         .item-text-container { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
         .item-name { margin-bottom: 0.75rem; transition: color 0.15s ease; } 
-        
         .item-description { font-size: 1.02rem; color: #555555; font-weight: 400; line-height: 1.7; text-align: justify; text-transform: none !important; letter-spacing: normal !important; }
         .item-description a { color: #d11a2a; text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; text-transform: none !important; }
         .item-description a:hover { opacity: 0.8; }
-        
         @media (max-width: 768px) { 
             .grid-item { grid-template-columns: 1fr; gap: 1.5rem; justify-items: center; } 
             .item-text-container { align-items: center; text-align: center; } 
         } 
     </style> 
 </head> 
-<body> 
+<body style="opacity: 0; transition: opacity 0.3s ease;"> 
     <div class="wrapper"> 
         <header> 
-            <h1 class="lab-title">
-                <a href="../index.html" class="title-link">Visual Experience Lab</a>
-            </h1> 
+            <h1 class="lab-title"><a href="../index.html" class="title-link">Visual Experience Lab</a></h1> 
             <div class="lab-lead"> Benjamin Watson, Lead<br> Assoc Prof Comp Sci NCSU </div> 
             <p class="lab-tagline"> Visual technology that moves us —<br> how digital images affect emotion, thinking & behavior </p> 
         </header> 
@@ -49,94 +43,50 @@
         <section id="news" class="content-section">
             <h2 class="section-title">Team</h2>
             <div class="content-grid">
-                
                 <div id="evan-jonson" class="grid-item">
-                    <a href="#evan-jonson" class="image-jump-link">
-                        <img src="pics/evan.jpeg" alt="Evan Jonson" class="headshot-image">
-                    </a>
+                    <a href="#evan-jonson" class="image-jump-link"><img src="pics/evan.jpeg" alt="Evan Jonson" class="headshot-image"></a>
                     <div class="item-text-container">
-                        <a href="#evan-jonson" class="title-jump-link">
-                            <div class="item-name">Evan Jonson (MS)</div>
-                        </a>
-                        <p class="item-description">
-                            Evan is working on near-zero latency graphics systems. His current prototype displays a response to player or user input in less than 2 ms. His collaborators include stochastic and interactively centered scans. He is collaborating with Profs. <a href="https://sejong.elsevierpure.com/en/persons/hee-jin-choi/" target="_blank" rel="noopener noreferrer">Hee-Jin Choi</a> of Sejong and <a href="https://khu.elsevierpure.com/en/persons/hyoungsik-nam/" target="_blank" rel="noopener noreferrer">Hyoungsik Nam</a> of Kyung Hee Universities in Korea. He already has several publications, including at <a href="https://go.ncsu.edu/nearzeropaper" target="_blank" rel="noopener noreferrer">SID Display Week</a>, at <a href="https://doi.org/10.1145/3807895.3807936" target="_blank" rel="noopener noreferrer">ACM I3D</a>, and at both <a href="https://doi.acm.org/?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">Emerging Technologies</a> and the <a href="https://doi.acm.org?doi=3799828.3816007" target="_blank" rel="noopener noreferrer">PRICE Workshop</a> at SIGGRAPH. (<a href="https://www.linkedin.com/in/evan-jonson/" target="_blank" rel="noopener noreferrer">li</a>)
-                        </p>
+                        <a href="#evan-jonson" class="title-jump-link"><div class="item-name">Evan Jonson (MS)</div></a>
+                        <p class="item-description">Evan is working on near-zero latency graphics systems. His current prototype displays a response to player or user input in less than 2 ms. His collaborators include stochastic and interactively centered scans. He is collaborating with Profs. <a href="https://sejong.elsevierpure.com/en/persons/hee-jin-choi/" target="_blank" rel="noopener noreferrer">Hee-Jin Choi</a> of Sejong and <a href="https://khu.elsevierpure.com/en/persons/hyoungsik-nam/" target="_blank" rel="noopener noreferrer">Hyoungsik Nam</a> of Kyung Hee Universities in Korea. He already has several publications, including at <a href="https://go.ncsu.edu/nearzeropaper" target="_blank" rel="noopener noreferrer">SID Display Week</a>, at <a href="https://doi.org/10.1145/3807895.3807936" target="_blank" rel="noopener noreferrer">ACM I3D</a>, and at both <a href="https://doi.acm.org/?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">Emerging Technologies</a> and the <a href="https://doi.acm.org?doi=3799828.3816007" target="_blank" rel="noopener noreferrer">PRICE Workshop</a> at SIGGRAPH. (<a href="https://www.linkedin.com/in/evan-jonson/" target="_blank" rel="noopener noreferrer">li</a>)</p>
                     </div>
                 </div>
-
                 <div id="anuraag-jajoo" class="grid-item">
-                    <a href="#anuraag-jajoo" class="image-jump-link">
-                        <img src="pics/anuraag.jpeg" alt="Anuraag Jajoo" class="headshot-image">
-                    </a>
+                    <a href="#anuraag-jajoo" class="image-jump-link"><img src="pics/anuraag.jpeg" alt="Anuraag Jajoo" class="headshot-image"></a>
                     <div class="item-text-container">
-                        <a href="#anuraag-jajoo" class="title-jump-link">
-                            <div class="item-name">Anuraag Jajoo (MS)</div>
-                        </a>
-                        <p class="item-description">
-                            Anuraag is studying the effect of typical levels of delay on video conferencing. He has also worked with Tianyu Wu on 3D display, publishing a Best Paper at <a href="https://doi.org/10.1002/jsid.2062" target="_blank" rel="noopener noreferrer">SID Display Week</a>. (<a href="https://www.linkedin.com/in/anuraag-jajoo/" target="_blank" rel="noopener noreferrer">li</a>)
-                        </p>
+                        <a href="#anuraag-jajoo" class="title-jump-link"><div class="item-name">Anuraag Jajoo (MS)</div></a>
+                        <p class="item-description">Anuraag is studying the effect of typical levels of delay on video conferencing. He has also worked with Tianyu Wu on 3D display, publishing a Best Paper at <a href="https://doi.org/10.1002/jsid.2062" target="_blank" rel="noopener noreferrer">SID Display Week</a>. (<a href="https://www.linkedin.com/in/anuraag-jajoo/" target="_blank" rel="noopener noreferrer">li</a>)</p>
                     </div>
                 </div>
-
                 <div id="ashish-rajpurohit" class="grid-item">
-                    <a href="#ashish-rajpurohit" class="image-jump-link">
-                        <img src="pics/ashish.jpeg" alt="Ashish Rajpurohit" class="headshot-image">
-                    </a>
+                    <a href="#ashish-rajpurohit" class="image-jump-link"><img src="pics/ashish.jpeg" alt="Ashish Rajpurohit" class="headshot-image"></a>
                     <div class="item-text-container">
-                        <a href="#ashish-rajpurohit" class="title-jump-link">
-                            <div class="item-name">Ashish Rajpurohit (PhD)</div>
-                        </a>
-                        <p class="item-description">
-                            Ashish is learning about how competitive gamers configure their systems. He is addressing the following questions: do they favor temporal or spatial detail? Do they understand the systems settings they are configuring? Does their understanding influence their settings choices? He has published at <a href="https://doi.acm.org?doi=3807895.3807931" target="_blank" rel="noopener noreferrer">ACM I3D</a> and SIGGRAPH's <a href="https://doi.acm.org?doi=3799828.3816008" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>. (<a href="https://www.linkedin.com/in/ashishsadanandrajpurohit/" target="_blank" rel="noopener noreferrer">li</a>)
-                        </p>
+                        <a href="#ashish-rajpurohit" class="title-jump-link"><div class="item-name">Ashish Rajpurohit (PhD)</div></a>
+                        <p class="item-description">Ashish is learning about how competitive gamers configure their systems. He is addressing the following questions: do they favor temporal or spatial detail? Do they understand the systems settings they are configuring? Does their understanding influence their settings choices? He has published at <a href="https://doi.acm.org?doi=3807895.3807931" target="_blank" rel="noopener noreferrer">ACM I3D</a> and SIGGRAPH's <a href="https://doi.acm.org?doi=3799828.3816008" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>. (<a href="https://www.linkedin.com/in/ashishsadanandrajpurohit/" target="_blank" rel="noopener noreferrer">li</a>)</p>
                     </div>
                 </div>
-
                 <div id="dani-paul-hove" class="grid-item">
-                    <a href="#dani-paul-hove" class="image-jump-link">
-                        <img src="pics/dani.jpeg" alt="Dani Paul Hove" class="headshot-image">
-                    </a>
+                    <a href="#dani-paul-hove" class="image-jump-link"><img src="pics/dani.jpeg" alt="Dani Paul Hove" class="headshot-image"></a>
                     <div class="item-text-container">
-                        <a href="#dani-paul-hove" class="title-jump-link">
-                            <div class="item-name">Dani Paul Hove (PhD)</div>
-                        </a>
-                        <p class="item-description">
-                            Dani is working on improving video conferencing, with collaborators <a href="https://www.riec.tohoku.ac.jp/~kitamura/" target="_blank" rel="noopener noreferrer">Yoshifumi Kitamura</a> and <a href="https://www.r-info.tohoku.ac.jp/en/951162ecc2250e4449ce117ea7cfdc86.html" target="_blank" rel="noopener noreferrer">Miao Cheng</a> at Tohoku University in Japan. First, using a survey of conference experts, he is studying the benefits, challenges and best practices for hybrid conferencing, in which in-person and remote conferencing mingle. Second, to make video conferencing more natural, he is developing a low-cost system that preserves gaze. Dani published a <a href="https://doi.org/10.1162/pres_a_00398" target="_blank" rel="noopener noreferrer">survey of video conferencing research</a> in the journal Presence. (<a href="https://www.linkedin.com/in/dani-paul-h-71702a104/" target="_blank" rel="noopener noreferrer">li</a>)
-                        </p>
+                        <a href="#dani-paul-hove" class="title-jump-link"><div class="item-name">Dani Paul Hove (PhD)</div></a>
+                        <p class="item-description">Dani is working on improving video conferencing, with collaborators <a href="https://www.riec.tohoku.ac.jp/~kitamura/" target="_blank" rel="noopener noreferrer">Yoshifumi Kitamura</a> and <a href="https://www.r-info.tohoku.ac.jp/en/951162ecc2250e4449ce117ea7cfdc86.html" target="_blank" rel="noopener noreferrer">Miao Cheng</a> at Tohoku University in Japan. First, using a survey of conference experts, he is studying the benefits, challenges and best practices for hybrid conferencing, in which in-person and remote conferencing mingle. Second, to make video conferencing more natural, he is developing a low-cost system that preserves gaze. Dani published a <a href="https://doi.org/10.1162/pres_a_00398" target="_blank" rel="noopener noreferrer">survey of video conferencing research</a> in the journal Presence. (<a href="https://www.linkedin.com/in/dani-paul-h-71702a104/" target="_blank" rel="noopener noreferrer">li</a>)</p>
                     </div>
                 </div>
-
                 <div id="aaron-fulmer" class="grid-item">
-                    <a href="#aaron-fulmer" class="image-jump-link">
-                        <img src="pics/aaron.jpeg" alt="Aaron Fulmer" class="headshot-image">
-                    </a>
+                    <a href="#aaron-fulmer" class="image-jump-link"><img src="pics/aaron.jpeg" alt="Aaron Fulmer" class="headshot-image"></a>
                     <div class="item-text-container">
-                        <a href="#aaron-fulmer" class="title-jump-link">
-                            <div class="item-name">Aaron Fulmer (PhD)</div>
-                        </a>
-                        <p class="item-description">
-                            Aaron is developing low latency graphics systems. He specializes in new display scanning patterns, including both stochastic and interactively centered scans. He is collaborating with Profs. <a href="https://sejong.elsevierpure.com/en/persons/hee-jin-choi/" target="_blank" rel="noopener noreferrer">Hee-Jin Choi</a> of Sejong and <a href="https://khu.elsevierpure.com/en/persons/hyoungsik-nam/" target="_blank" rel="noopener noreferrer">Hyoungsik Nam</a> of Kyung Hee Universities in Korea. His publications include <a href="https://doi.org/10.1002/sdtp.18582" target="_blank" rel="noopener noreferrer">SID Display Week</a>, <a href="https://doi.acm.org?doi=3807895.3807936" target="_blank" rel="noopener noreferrer">ACM I3D</a>, and SIGGRAPH's <a href="https://doi.acm.org?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">Emerging Technologies</a> and <a href="https://doi.acm.org?doi=3799828.3816007" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>. (<a href="https://www.linkedin.com/in/aaron-fulmer/" target="_blank" rel="noopener noreferrer">li</a>)
-                        </p>
+                        <a href="#aaron-fulmer" class="title-jump-link"><div class="item-name">Aaron Fulmer (PhD)</div></a>
+                        <p class="item-description">Aaron is developing low latency graphics systems. He specializes in new display scanning patterns, including both stochastic and interactively centered scans. He is collaborating with Profs. <a href="https://sejong.elsevierpure.com/en/persons/hee-jin-choi/" target="_blank" rel="noopener noreferrer">Hee-Jin Choi</a> of Sejong and <a href="https://khu.elsevierpure.com/en/persons/hyoungsik-nam/" target="_blank" rel="noopener noreferrer">Hyoungsik Nam</a> of Kyung Hee Universities in Korea. His publications include <a href="https://doi.org/10.1002/sdtp.18582" target="_blank" rel="noopener noreferrer">SID Display Week</a>, <a href="https://doi.acm.org?doi=3807895.3807936" target="_blank" rel="noopener noreferrer">ACM I3D</a>, and SIGGRAPH's <a href="https://doi.acm.org?doi=3799826.3812437" target="_blank" rel="noopener noreferrer">Emerging Technologies</a> and <a href="https://doi.acm.org?doi=3799828.3816007" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>. (<a href="https://www.linkedin.com/in/aaron-fulmer/" target="_blank" rel="noopener noreferrer">li</a>)</p>
                     </div>
                 </div>
-
                 <div id="arjun-madhusudan" class="grid-item">
-                    <a href="#arjun-madhusudan" class="image-jump-link">
-                        <img src="pics/arjun.jpeg" alt="Arjun Madhusudan" class="headshot-image">
-                    </a>
+                    <a href="#arjun-madhusudan" class="image-jump-link"><img src="pics/arjun.jpeg" alt="Arjun Madhusudan" class="headshot-image"></a>
                     <div class="item-text-container">
-                        <a href="#arjun-madhusudan" class="title-jump-link">
-                            <div class="item-name">Arjun Madhusudan (PhD)</div>
-                        </a>
-                        <p class="item-description">
-                            Arjun is studying esports, especially new methodologies for performing esports experiments, and the effects of temporal (e.g. latency) and spatial detail (e.g. resolution) on game performance. He is performing this work in collaboration with <a href="https://research.nvidia.com/person/josef-spjut" target="_blank" rel="noopener noreferrer">Josef Spjut</a> and others at NVIDIA. He has published at <a href="https://doi.org/10.1145/3550469.3555396" target="_blank" rel="noopener noreferrer">SIGGRAPH</a>, the <a href="https://doi.org/10.1145/3799828.3816005" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>, <a href="https://doi.acm.org?doi=3807895.3807930" target="_blank" rel="noopener noreferrer">ACM I3D</a>, <a href="https://doi.org/10.1145/3450337.3483484" target="_blank" rel="noopener noreferrer">CHI Play</a>, <a href="https://dx.doi.org/10.1145/3567954" target="_blank" rel="noopener noreferrer">Interactions</a> and more.... (<a href="https://www.linkedin.com/in/arjunmadhusudan/" target="_blank" rel="noopener noreferrer">li</a>)
-                        </p>
+                        <a href="#arjun-madhusudan" class="title-jump-link"><div class="item-name">Arjun Madhusudan (PhD)</div></a>
+                        <p class="item-description">Arjun is studying esports, especially new methodologies for performing esports experiments, and the effects of temporal (e.g. latency) and spatial detail (e.g. resolution) on game performance. He is performing this work in collaboration with <a href="https://research.nvidia.com/person/josef-spjut" target="_blank" rel="noopener noreferrer">Josef Spjut</a> and others at NVIDIA. He has published at <a href="https://doi.org/10.1145/3550469.3555396" target="_blank" rel="noopener noreferrer">SIGGRAPH</a>, the <a href="https://doi.org/10.1145/3799828.3816005" target="_blank" rel="noopener noreferrer">PRICE Workshop</a>, <a href="https://doi.acm.org?doi=3807895.3807930" target="_blank" rel="noopener noreferrer">ACM I3D</a>, <a href="https://doi.org/10.1145/3450337.3483484" target="_blank" rel="noopener noreferrer">CHI Play</a>, <a href="https://dx.doi.org/10.1145/3567954" target="_blank" rel="noopener noreferrer">Interactions</a> and more.... (<a href="https://www.linkedin.com/in/arjunmadhusudan/" target="_blank" rel="noopener noreferrer">li</a>)</p>
                     </div>
                 </div>
-
             </div>
         </section>
-        
     </div> 
 </body> 
 </html>

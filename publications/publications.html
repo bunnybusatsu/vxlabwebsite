@@ -7,94 +7,72 @@
                 const response = await fetch('../common-head.html'); 
                 const htmlText = await response.text();
                 document.head.insertAdjacentHTML('afterbegin', htmlText);
+                setTimeout(() => { document.body.style.opacity = '1'; }, 50);
             } catch (error) {
                 console.error("Failed to load common head tags:", error);
+                document.body.style.opacity = '1';
             }
         })();
     </script>
 
     <style> 
-        /* Subpage-Specific Styling */ 
         .section-title { font-weight: 700; margin-bottom: 3.5rem; color: #d11a2a; } 
-        
+        .section-subtitle { margin-top: -2.5rem; margin-bottom: 3.5rem; font-size: 0.95rem; font-weight: 500; color: #555555; letter-spacing: 0.25em; }
+        .section-subtitle a { color: inherit; text-decoration: none; transition: color 0.15s ease; text-transform: uppercase !important; }
+        .section-subtitle a:hover { color: #d11a2a; }
         .content-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; max-width: 850px; margin: 0 auto; } 
         .grid-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; align-items: start; } 
-        
         .image-jump-link { display: block; width: 100%; transition: opacity 0.2s ease; }
         .image-jump-link:hover { opacity: 0.85; }
-        
         .item-text-container { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
         .item-name { margin-bottom: 0.75rem; transition: color 0.15s ease; } 
-        
         .item-description { font-size: 1.02rem; color: #555555; font-weight: 400; line-height: 1.7; text-align: justify; text-transform: none !important; letter-spacing: normal !important; }
         .item-description a { color: #d11a2a; text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; text-transform: none !important; }
         .item-description a:hover { opacity: 0.8; }
-        
         @media (max-width: 768px) { 
             .grid-item { grid-template-columns: 1fr; gap: 1.5rem; justify-items: center; } 
             .item-text-container { align-items: center; text-align: center; } 
         } 
     </style> 
 </head> 
-<body> 
+<body style="opacity: 0; transition: opacity 0.3s ease;"> 
     <div class="wrapper"> 
         <header> 
-            <h1 class="lab-title">
-                <a href="../index.html" class="title-link">Visual Experience Lab</a>
-            </h1> 
+            <h1 class="lab-title"><a href="../index.html" class="title-link">Visual Experience Lab</a></h1> 
             <div class="lab-lead"> Benjamin Watson, Lead<br> Assoc Prof Comp Sci NCSU </div> 
             <p class="lab-tagline"> Visual technology that moves us —<br> how digital images affect emotion, thinking & behavior </p> 
         </header> 
 
         <section id="publications" class="content-section">
             <h2 class="section-title">Publications</h2>
+            <div class="section-subtitle">
+                <a href="https://scholar.google.com/citations?hl=en&user=yfYYAMQAAAAJ" target="_blank" rel="noopener noreferrer">gscholar</a> &nbsp;|&nbsp; <a href="https://arxiv.org/a/watson_b_1.html" target="_blank" rel="noopener noreferrer">arxiv</a> &nbsp;|&nbsp; publish
+            </div>
+
             <div class="content-grid">
-                
                 <div id="near-zero-latency-graphics" class="grid-item">
-                    <a href="#near-zero-latency-graphics" class="image-jump-link">
-                        <img src="pics/near.zero.latency.png" alt="Near-Zero Latency Graphics" class="pub-image">
-                    </a>
+                    <a href="#near-zero-latency-graphics" class="image-jump-link"><img src="pics/near.zero.latency.png" alt="Near-Zero Latency Graphics" class="pub-image"></a>
                     <div class="item-text-container">
-                        <a href="#near-zero-latency-graphics" class="title-jump-link">
-                            <div class="item-name">Near-Zero Latency Graphics</div>
-                        </a>
-                        <p class="item-description">
-                            We have developed a hardware prototype that responds to player or user input in less than 2 ms. It renders pixel-by-pixel rather than frame-by-frame, and orders those pixels randomly. You can play Pong, Tetris or a simple shooting task with it. (pdf)
-                        </p>
+                        <a href="#near-zero-latency-graphics" class="title-jump-link"><div class="item-name">Near-Zero Latency Graphics</div></a>
+                        <p class="item-description">We have developed a hardware prototype that responds to player or user input in less than 2 ms. It renders pixel-by-pixel rather than frame-by-frame, and orders those pixels randomly. You can play Pong, Tetris or a simple shooting task with it. (<a href="https://go.ncsu.edu/nearzeropaper" target="_blank" rel="noopener noreferrer">pdf</a>)</p>
                     </div>
                 </div>
-
                 <div id="wide-fov-3d-display" class="grid-item">
-                    <a href="#wide-fov-3d-display" class="image-jump-link">
-                        <img src="pics/raytracing.for.lfds.png" alt="Wide FOV 3D Display" class="pub-image">
-                    </a>
+                    <a href="#wide-fov-3d-display" class="image-jump-link"><img src="pics/raytracing.for.lfds.png" alt="Wide viewing angle 3D display" class="pub-image"></a>
                     <div class="item-text-container">
-                        <a href="#wide-fov-3d-display" class="title-jump-link">
-                            <div class="item-name">Wide FOV 3D Display</div>
-                        </a>
-                        <p class="item-description">
-                            We have developed a software technique that drastically improves image quality for lenticular light field displays — with a wider viewing angle, higher resolution, and less ghosting. It works by interactively modeling light flow from pixel through lens to the viewer's eye, and then rendering in real time to match that flow. Interactive viewers consistently prefer our technique. (doi)
-                        </p>
+                        <a href="#wide-fov-3d-display" class="title-jump-link"><div class="item-name">wide viewing angle 3D display</div></a>
+                        <p class="item-description">We have developed a software technique that drastically improves image quality for lenticular light field displays — with a wider viewing angle, higher resolution, and less ghosting. It works by interactively modeling light flow from pixel through lens to the viewer's eye, and then rendering in real time to match that flow. Interactive viewers consistently prefer our technique. (<a href="https://doi.org/10.1002/jsid.2062" target="_blank" rel="noopener noreferrer">doi</a>)</p>
                     </div>
                 </div>
-
                 <div id="stochastic-display-scanning" class="grid-item">
-                    <a href="#stochastic-display-scanning" class="image-jump-link">
-                        <img src="pics/random.scan.png" alt="Stochastic Display Scanning" class="pub-image">
-                    </a>
+                    <a href="#stochastic-display-scanning" class="image-jump-link"><img src="pics/random.scan.png" alt="Stochastic Display Scanning" class="pub-image"></a>
                     <div class="item-text-container">
-                        <a href="#stochastic-display-scanning" class="title-jump-link">
-                            <div class="item-name">Stochastic Display Scanning</div>
-                        </a>
-                        <p class="item-description">
-                            To reduce latency during interaction, we propose scanning display pixels in random rather than top-to-bottom order. This delivers newer information across the display rather than only at the top, and with VSYNC off, exchanges large tears (frame boundaries) for some noise at moving edges. (doi)
-                        </p>
+                        <a href="#stochastic-display-scanning" class="title-jump-link"><div class="item-name">Stochastic Display Scanning</div></a>
+                        <p class="item-description">To reduce latency during interaction, we propose scanning display pixels in random rather than top-to-bottom order. This delivers newer information across the display rather than only at the top, and with VSYNC off, exchanges large tears (frame boundaries) for some noise at moving edges. (<a href="https://doi.org/10.1002/sdtp.18582" target="_blank" rel="noopener noreferrer">doi</a>)</p>
                     </div>
                 </div>
-
             </div>
         </section>
-        
     </div> 
 </body> 
 </html>
