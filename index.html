@@ -362,13 +362,13 @@
         </section>
 
         <section id="publications" class="content-section">
-            <h2 class="section-title">Recent Publications (+ more)</h2>
+            <h2 class="section-title"><a href="publications/publications.html">Recent Publications (+ more)</a></h2>
             
             <div class="section-subtitle">
                 <a href="https://scholar.google.com/citations?hl=en&user=yfYYAMQAAAAJ" target="_blank" rel="noopener noreferrer">gscholar</a> &nbsp;|&nbsp; <a href="https://arxiv.org/a/watson_b_1.html" target="_blank" rel="noopener noreferrer">arxiv</a>
             </div>
 
-            <div class="content-grid">
+            <div id="dynamic-publications-grid" class="content-grid">
                 
                 <div class="grid-item">
                     <img src="publications/pics/near.zero.latency.png" alt="Near-zero latency graphics" class="pub-image">
@@ -492,6 +492,9 @@
 
                 // Load research container from research/research.html
                 loadContentFromSubpage('research/research.html', '.grid-item', 'dynamic-research-grid');
+
+                // Load publications container from publications/publications.html
+                loadContentFromSubpage('publications/publications.html', '.grid-item', 'dynamic-publications-grid');
             }
 
             // Safe dual-execution strategy to handle lifecycle race conditions safely
