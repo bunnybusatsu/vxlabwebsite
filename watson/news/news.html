@@ -1,0 +1,103 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <script>
+        // Load the shared head tags
+        (async function() {
+            try {
+                const response = await fetch('../common-head.html'); 
+                const htmlText = await response.text();
+                document.head.insertAdjacentHTML('afterbegin', htmlText);
+                setTimeout(() => { document.body.style.opacity = '1'; }, 50);
+            } catch (error) {
+                console.error("Failed to load common head tags:", error);
+                document.body.style.opacity = '1'; 
+            }
+        })();
+    </script>
+    
+    <script>
+        (async function() {
+            try {
+                // Assuming header-text.html for the Watson site is kept in the /watson folder
+                const response = await fetch('header-text.html'); 
+                const htmlText = await response.text();
+                
+                const headerPlaceholder = document.getElementById('shared-header-text');
+                if (headerPlaceholder) {
+                    headerPlaceholder.innerHTML = htmlText;
+                }
+            } catch (error) {
+                console.error("Failed to load header text:", error);
+            }
+        })();
+    </script>
+
+    <style>
+        .section-title { font-weight: 700; margin-bottom: 3.5rem; color: #d11a2a; } 
+        .content-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; max-width: 850px; margin: 0 auto; } 
+        .grid-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; align-items: start; } 
+        .image-jump-link { display: block; width: 100%; transition: opacity 0.2s ease; }
+        .image-jump-link:hover { opacity: 0.85; }
+        .item-text-container { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+        .item-name { margin-bottom: 0.75rem; transition: color 0.15s ease; } 
+        .item-description { font-size: 1.02rem; color: #555555; font-weight: 400; line-height: 1.7; text-align: justify; text-transform: none !important; letter-spacing: normal !important; }
+        .item-description a { color: #d11a2a; text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; text-transform: none !important; }
+        .item-description a:hover { opacity: 0.8; }
+        @media (max-width: 768px) { 
+            .grid-item { grid-template-columns: 1fr; gap: 1.5rem; justify-items: center; } 
+            .item-text-container { align-items: center; text-align: center; } 
+        } 
+    </style>
+</head> 
+<body style="opacity: 0; transition: opacity 0.3s ease;"> 
+    <div class="wrapper"> 
+        
+        <header> 
+            <div id="shared-header-text"></div>
+        </header> 
+
+        <section id="news" class="content-section">
+            <h2 class="section-title">News</h2>
+            <div id="shared-news-grid" class="content-grid">
+            </div>
+        </section>
+
+    </div> 
+
+    <script>
+        (async function loadSharedNews() {
+            try {
+                // 1. Fetch the lab's main news file
+                const response = await fetch('../news/news.html');
+                if (!response.ok) throw new Error('Network response was not ok');
+                const htmlText = await response.text();
+                
+                // 2. Parse the fetched HTML
+                const parser = new DOMParser();
+                const sourceDoc = parser.parseFromString(htmlText, 'text/html');
+                
+                // 3. Find the grid containing the news items in the fetched file
+                const sourceGrid = sourceDoc.querySelector('.content-grid');
+                const targetGrid = document.getElementById('shared-news-grid');
+                
+                if (sourceGrid && targetGrid) {
+                    // 4. Critical Step: Fix relative paths for images!
+                    const images = sourceGrid.querySelectorAll('img');
+                    images.forEach(img => {
+                        const src = img.getAttribute('src');
+                        if (src && !src.startsWith('http')) {
+                            img.setAttribute('src', '../news/' + src);
+                        }
+                    });
+                    
+                    // 5. Inject the corrected HTML into this page
+                    targetGrid.innerHTML = sourceGrid.innerHTML;
+                }
+            } catch (error) {
+                console.error("Failed to load shared news:", error);
+            }
+        })();
+    </script>
+</body> 
+</html>
