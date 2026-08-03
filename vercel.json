@@ -1,0 +1,14 @@
+{
+  "rewrites": [
+    {
+      "has": [
+        {
+          "type": "host",
+          "value": "watson.csc.ncsu.edu"
+        }
+      ],
+      "source": "/(.*)",
+      "destination": "/watson/$1"
+    }
+  ]
+}
