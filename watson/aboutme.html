@@ -55,4 +55,38 @@
         }
         .lead-item .image-jump-link { width: auto; text-align: center; margin-bottom: 0.5rem; }
         .lead-image { max-width: 300px !important; width: 100%; height: auto; }
-        .lead-item .item-text-container
+        .lead-item .item-text-container { align-items: center; text-align: center; }
+        .lead-item .item-description { text-align: justify; } 
+
+        @media (max-width: 768px) { 
+            .grid-item, .lead-item { grid-template-columns: 1fr !important; gap: 1.5rem; justify-items: center; } 
+            .item-text-container { align-items: center; text-align: center; } 
+        } 
+    </style> 
+</head> 
+<body style="opacity: 0; transition: opacity 0.3s ease;"> 
+    <div class="wrapper"> 
+        <header> 
+            <div id="shared-header-text"></div>
+        </header> 
+
+        <section id="about-me" class="content-section">
+            <h2 class="section-title">About Me</h2>
+
+            <div class="content-grid" style="margin-bottom: 0;">
+                <div id="ben-watson" class="grid-item lead-item">
+                    <a href="#ben-watson" class="image-jump-link"><img src="../team/pics/ben.webp" alt="Prof Benjamin Watson" class="headshot-image lead-image"></a>
+                    <div class="item-text-container">
+                        <a href="#ben-watson" class="title-jump-link"><div class="item-name">Prof. Benjamin Watson</div></a>
+                        <div class="item-description">
+                            <p style="margin-bottom: 1.5rem; text-transform: none !important;">I'm an Associate Professor of Computer Science at North Carolina State University, where my students and I study how visual technologies affect human emotion, thinking and behavior. Our work in the Visual Experience Lab spans gaming, computer graphics, visualization, user experience, human-computer interfaces and virtual reality. I also co-founded NexUX, a collaborative that sought to improve our lives through deeply interdisciplinary collaboration.</p>
+                            <p style="text-transform: none !important;">I have worked in the Computer Science department at North Carolina State University since January, 2006. Previously, I worked at Northwestern University and the University of Alberta. I completed my Ph.D. in Computer Science under the kind supervision of Dr. Larry Hodges at Georgia Tech's College of Computing and GVU Center.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </div> 
+</body> 
+</html>
