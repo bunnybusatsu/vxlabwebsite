@@ -90,37 +90,53 @@
             <nav class="top-nav"> 
                 <ul> 
                     <li><a href="#news">News</a></li> 
-                    <li><a href="#team">Team</a></li> 
+                    <li><a href="#students">Students</a></li> 
+                    <li><a href="#teaching">Teaching</a></li> 
                     <li><a href="#research">Research</a></li> 
                     <li><a href="#publications">Publications</a></li> 
+                    <li><a href="#about">About</a></li> 
                     <li><a href="#contact">Contact</a></li> 
                 </ul> 
             </nav> 
         </header> 
 
         <section id="news" class="content-section">
-            <h2 class="section-title"><a href="../news/news.html">Recent News (+ more)</a></h2>
+            <h2 class="section-title"><a href="news.html">Recent News (+ more)</a></h2>
             <div id="dynamic-news-grid" class="content-grid"></div>
         </section>
         
-        <section id="team" class="content-section"> 
-            <h2 class="section-title"><a href="../team/team.html">New Team Members (+ more)</a></h2> 
+        <section id="students" class="content-section"> 
+            <h2 class="section-title"><a href="team.html">New Students (+ more)</a></h2> 
             <div id="dynamic-team-grid" class="content-grid"></div> 
         </section>
 
+        <section id="teaching" class="content-section">
+            <h2 class="section-title">Teaching</h2>
+            <div class="contact-text-box">
+                <p>Teaching materials and course updates will be displayed here.</p>
+            </div>
+        </section>
+
         <section id="research" class="content-section">
-            <h2 class="section-title"><a href="../research/research.html">Recent Research (+ more)</a></h2>
+            <h2 class="section-title"><a href="research.html">Recent Research (+ more)</a></h2>
             <div id="dynamic-research-grid" class="content-grid"></div>
         </section>
 
         <section id="publications" class="content-section">
-            <h2 class="section-title"><a href="../publications/publications.html">Recent Publications (+ more)</a></h2>
+            <h2 class="section-title"><a href="publications.html">Recent Publications (+ more)</a></h2>
             
             <div class="section-subtitle">
                 <a href="https://scholar.google.com/citations?hl=en&user=yfYYAMQAAAAJ" target="_blank" rel="noopener noreferrer">gscholar</a> &nbsp;|&nbsp; <a href="https://arxiv.org/a/watson_b_1.html" target="_blank" rel="noopener noreferrer">arxiv</a>
             </div>
 
             <div id="dynamic-publications-grid" class="content-grid"></div>
+        </section>
+
+        <section id="about" class="content-section">
+            <h2 class="section-title">About</h2>
+            <div class="contact-text-box">
+                <p>Biographical details and academic profile overview will be highlighted here.</p>
+            </div>
         </section>
 
         <section id="contact" class="content-section">
@@ -189,14 +205,21 @@
                                 let finalTitleElement = titleNode.cloneNode(true);
 
                                 if (itemId) {
+                                    // Map targeted internal anchors to the local file layout structure
+                                    let localTargetPage = "";
+                                    if (targetGridId === 'dynamic-news-grid') localTargetPage = "news.html";
+                                    else if (targetGridId === 'dynamic-team-grid') localTargetPage = "team.html";
+                                    else if (targetGridId === 'dynamic-research-grid') localTargetPage = "research.html";
+                                    else if (targetGridId === 'dynamic-publications-grid') localTargetPage = "publications.html";
+                                    
                                     const imgJumpLink = document.createElement('a');
-                                    imgJumpLink.href = filePath + '#' + itemId; 
+                                    imgJumpLink.href = localTargetPage + '#' + itemId; 
                                     imgJumpLink.className = 'image-jump-link'; 
                                     imgJumpLink.appendChild(cleanImg);
                                     finalImageElement = imgJumpLink;
 
                                     const titleJumpLink = document.createElement('a');
-                                    titleJumpLink.href = filePath + '#' + itemId;
+                                    titleJumpLink.href = localTargetPage + '#' + itemId;
                                     titleJumpLink.className = 'title-jump-link';
                                     titleJumpLink.appendChild(finalTitleElement);
                                     finalTitleElement = titleJumpLink;
@@ -214,7 +237,7 @@
             }
 
             function initializeDynamicLoading() {
-                // Modified file paths to reach out of the /watson subfolder and query the shared lab subfolders
+                // Kept pointing out of the /watson folder structure to grab shared database items
                 loadContentFromSubpage('../news/news.html', '.grid-item', 'dynamic-news-grid');
                 loadContentFromSubpage('../team/team.html', '.grid-item', 'dynamic-team-grid');
                 loadContentFromSubpage('../research/research.html', '.grid-item', 'dynamic-research-grid');
