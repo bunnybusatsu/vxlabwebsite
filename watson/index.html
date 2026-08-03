@@ -40,10 +40,8 @@
     <style> 
         /* Homepage-Specific Styling */ 
         .top-nav { margin-top: 4.5rem; } 
-        /* Reduced gap from 2.5rem to 1.75rem (approx 30% reduction) */
         .top-nav ul { list-style: none; display: flex; justify-content: center; align-items: center; gap: 1.75rem; flex-wrap: wrap; } 
         
-        /* Inherits size (1.02rem) and letter-spacing (0.25em) from common-head.html */
         .top-nav a { 
             font-weight: 700; 
             color: #d11a2a; 
@@ -66,7 +64,7 @@
         .content-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.5rem; max-width: 800px; margin: 0 auto; } 
         .grid-item { display: flex; flex-direction: column; align-items: center; } 
         
-        .square-placeholder, .headshot-image, .research-image, .news-image, .pub-image { margin-bottom: 1.25rem; } 
+        .square-placeholder, .headshot-image, .research-image, .news-image, .pub-image, .course-image { margin-bottom: 1.25rem; width: 100%; height: auto; } 
         .item-name { text-align: center; } 
         
         .member-link { text-decoration: none; color: inherit; transition: color 0.15s ease; text-transform: uppercase !important; } 
@@ -112,10 +110,8 @@
         </section>
 
         <section id="teaching" class="content-section">
-            <h2 class="section-title">Teaching</h2>
-            <div class="contact-text-box">
-                <p>Teaching materials and course updates will be displayed here.</p>
-            </div>
+            <h2 class="section-title"><a href="teaching.html">Teaching (+ more)</a></h2>
+            <div id="dynamic-teaching-grid" class="content-grid"></div>
         </section>
 
         <section id="research" class="content-section">
@@ -203,6 +199,7 @@
                                     let localTargetPage = "";
                                     if (targetGridId === 'dynamic-news-grid') localTargetPage = "news.html";
                                     else if (targetGridId === 'dynamic-team-grid') localTargetPage = "students.html"; 
+                                    else if (targetGridId === 'dynamic-teaching-grid') localTargetPage = "teaching.html";
                                     else if (targetGridId === 'dynamic-research-grid') localTargetPage = "research.html";
                                     else if (targetGridId === 'dynamic-publications-grid') localTargetPage = "publications.html";
                                     
@@ -217,6 +214,30 @@
                                     titleJumpLink.className = 'title-jump-link';
                                     titleJumpLink.appendChild(finalTitleElement);
                                     finalTitleElement = titleJumpLink;
+                                } else if (targetGridId === 'dynamic-teaching-grid') {
+                                    // Preserve external links for teaching items that don't use jump anchors
+                                    const sourceImgLink = imgNode.closest('a');
+                                    const sourceTitleLink = titleNode.closest('a');
+
+                                    if (sourceImgLink) {
+                                        const imgExternalLink = document.createElement('a');
+                                        imgExternalLink.href = sourceImgLink.href;
+                                        imgExternalLink.target = "_blank";
+                                        imgExternalLink.rel = "noopener noreferrer";
+                                        imgExternalLink.className = 'image-jump-link';
+                                        imgExternalLink.appendChild(cleanImg);
+                                        finalImageElement = imgExternalLink;
+                                    }
+
+                                    if (sourceTitleLink) {
+                                        const titleExternalLink = document.createElement('a');
+                                        titleExternalLink.href = sourceTitleLink.href;
+                                        titleExternalLink.target = "_blank";
+                                        titleExternalLink.rel = "noopener noreferrer";
+                                        titleExternalLink.className = 'title-jump-link';
+                                        titleExternalLink.appendChild(finalTitleElement);
+                                        finalTitleElement = titleExternalLink;
+                                    }
                                 }
                                 
                                 newGridItem.appendChild(finalImageElement);
@@ -233,6 +254,8 @@
             function initializeDynamicLoading() {
                 loadContentFromSubpage('../news/news.html', '.grid-item', 'dynamic-news-grid');
                 loadContentFromSubpage('../team/team.html', '.grid-item', 'dynamic-team-grid');
+                // Teaching is sourced locally from the watson folder
+                loadContentFromSubpage('teaching.html', '.grid-item', 'dynamic-teaching-grid');
                 loadContentFromSubpage('../research/research.html', '.grid-item', 'dynamic-research-grid');
                 loadContentFromSubpage('../publications/publications.html', '.grid-item', 'dynamic-publications-grid');
             }
