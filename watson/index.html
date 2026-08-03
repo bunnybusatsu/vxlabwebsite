@@ -40,7 +40,8 @@
     <style> 
         /* Homepage-Specific Styling */ 
         .top-nav { margin-top: 4.5rem; } 
-        .top-nav ul { list-style: none; display: flex; justify-content: center; align-items: center; gap: 2.5rem; flex-wrap: wrap; } 
+        /* Reduced gap from 2.5rem to 1.75rem (approx 30% reduction) */
+        .top-nav ul { list-style: none; display: flex; justify-content: center; align-items: center; gap: 1.75rem; flex-wrap: wrap; } 
         
         /* Inherits size (1.02rem) and letter-spacing (0.25em) from common-head.html */
         .top-nav a { 
@@ -93,8 +94,8 @@
                     <li><a href="#students">Students</a></li> 
                     <li><a href="#teaching">Teaching</a></li> 
                     <li><a href="#research">Research</a></li> 
-                    <li><a href="#publications">Publications</a></li> 
-                    <li><a href="#about">About</a></li> 
+                    <li><a href="#publications">Pubs</a></li> 
+                    <li><a href="#about-me">About Me</a></li> 
                     <li><a href="#contact">Contact</a></li> 
                 </ul> 
             </nav> 
@@ -106,7 +107,7 @@
         </section>
         
         <section id="students" class="content-section"> 
-            <h2 class="section-title"><a href="team.html">New Students (+ more)</a></h2> 
+            <h2 class="section-title"><a href="students.html">New Students (+ more)</a></h2> 
             <div id="dynamic-team-grid" class="content-grid"></div> 
         </section>
 
@@ -132,21 +133,14 @@
             <div id="dynamic-publications-grid" class="content-grid"></div>
         </section>
 
-        <section id="about" class="content-section">
-            <h2 class="section-title">About</h2>
-            <div class="contact-text-box">
-                <p>Biographical details and academic profile overview will be highlighted here.</p>
-            </div>
-        </section>
-
         <section id="contact" class="content-section">
             <h2 class="section-title">Contact</h2>
             <div class="contact-text-box">
                 <p>
-                    Online, you can reach us at <a href="mailto:visualexperience@ncsu.edu">visualexperience@ncsu.edu</a>. We have a lab slack, and you can request membership there.
+                    My email is <a href="mailto:bwatson@ncsu.edu">bwatson@ncsu.edu</a>, and my phone is 919 513 0325.
                 </p>
                 <p>
-                    In person, you can find us in our lab at NC State in Eng. Bldg. 2 room 2241 — you'll have to knock. We meet as a group most Fridays at 4 (a bit spotty in the summer). Every other week we gather in the lab and present research to one another. On the other weeks, we meet casually off campus, with Prof. Watson buying ice cream, coffee or beer.
+                    My office at NC State is in Eng. Bldg. 2 room 2280. You can schedule office hours with me <a href="https://go.ncsu.edu/watsonofficehours" target="_blank" rel="noopener noreferrer">here</a>, or email me to schedule a meeting. Or just feel free to stop by!
                 </p>
             </div>
         </section>
@@ -205,10 +199,10 @@
                                 let finalTitleElement = titleNode.cloneNode(true);
 
                                 if (itemId) {
-                                    // Map targeted internal anchors to the local file layout structure
+                                    // Internal anchors match the local file system schema layout destinations
                                     let localTargetPage = "";
                                     if (targetGridId === 'dynamic-news-grid') localTargetPage = "news.html";
-                                    else if (targetGridId === 'dynamic-team-grid') localTargetPage = "team.html";
+                                    else if (targetGridId === 'dynamic-team-grid') localTargetPage = "students.html"; // Redirects items explicitly to students page mapping
                                     else if (targetGridId === 'dynamic-research-grid') localTargetPage = "research.html";
                                     else if (targetGridId === 'dynamic-publications-grid') localTargetPage = "publications.html";
                                     
@@ -237,7 +231,6 @@
             }
 
             function initializeDynamicLoading() {
-                // Kept pointing out of the /watson folder structure to grab shared database items
                 loadContentFromSubpage('../news/news.html', '.grid-item', 'dynamic-news-grid');
                 loadContentFromSubpage('../team/team.html', '.grid-item', 'dynamic-team-grid');
                 loadContentFromSubpage('../research/research.html', '.grid-item', 'dynamic-research-grid');
