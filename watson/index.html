@@ -4,7 +4,8 @@
     <script>
         (async function() {
             try {
-                const response = await fetch('common-head.html'); 
+                // Point up to the parent directory to share the main lab's common-head
+                const response = await fetch('../common-head.html'); 
                 const htmlText = await response.text();
                 document.head.insertAdjacentHTML('afterbegin', htmlText);
                 
@@ -15,6 +16,23 @@
             } catch (error) {
                 console.error("Failed to load common head tags:", error);
                 document.body.style.opacity = '1'; // Safety fallback
+            }
+        })();
+    </script>
+
+    <script>
+        (async function() {
+            try {
+                // Fetch the personal version of the header-text file out of the /watson subfolder
+                const response = await fetch('header-text.html'); 
+                const htmlText = await response.text();
+                
+                const headerPlaceholder = document.getElementById('shared-header-text');
+                if (headerPlaceholder) {
+                    headerPlaceholder.innerHTML = htmlText;
+                }
+            } catch (error) {
+                console.error("Failed to load header text:", error);
             }
         })();
     </script>
@@ -67,19 +85,7 @@
 <body style="opacity: 0; transition: opacity 0.3s ease;"> 
     <div class="wrapper"> 
         <header> 
-            <h1 class="lab-title">
-                <a href="index.html" class="title-link">Visual Experience Lab</a>
-            </h1> 
-            
-            <div class="lab-lead"> 
-                Benjamin Watson, Lead<br> 
-                Assoc Prof Comp Sci NCSU 
-            </div> 
-            
-            <p class="lab-tagline"> 
-                Visual technology that moves us —<br> 
-                how digital images affect emotion, thinking & behavior 
-            </p> 
+            <div id="shared-header-text"></div>
             
             <nav class="top-nav"> 
                 <ul> 
@@ -93,22 +99,22 @@
         </header> 
 
         <section id="news" class="content-section">
-            <h2 class="section-title"><a href="news/news.html">Recent News (+ more)</a></h2>
+            <h2 class="section-title"><a href="../news/news.html">Recent News (+ more)</a></h2>
             <div id="dynamic-news-grid" class="content-grid"></div>
         </section>
         
         <section id="team" class="content-section"> 
-            <h2 class="section-title"><a href="team/team.html">New Team Members (+ more)</a></h2> 
+            <h2 class="section-title"><a href="../team/team.html">New Team Members (+ more)</a></h2> 
             <div id="dynamic-team-grid" class="content-grid"></div> 
         </section>
 
         <section id="research" class="content-section">
-            <h2 class="section-title"><a href="research/research.html">Recent Research (+ more)</a></h2>
+            <h2 class="section-title"><a href="../research/research.html">Recent Research (+ more)</a></h2>
             <div id="dynamic-research-grid" class="content-grid"></div>
         </section>
 
         <section id="publications" class="content-section">
-            <h2 class="section-title"><a href="publications/publications.html">Recent Publications (+ more)</a></h2>
+            <h2 class="section-title"><a href="../publications/publications.html">Recent Publications (+ more)</a></h2>
             
             <div class="section-subtitle">
                 <a href="https://scholar.google.com/citations?hl=en&user=yfYYAMQAAAAJ" target="_blank" rel="noopener noreferrer">gscholar</a> &nbsp;|&nbsp; <a href="https://arxiv.org/a/watson_b_1.html" target="_blank" rel="noopener noreferrer">arxiv</a>
@@ -208,10 +214,11 @@
             }
 
             function initializeDynamicLoading() {
-                loadContentFromSubpage('news/news.html', '.grid-item', 'dynamic-news-grid');
-                loadContentFromSubpage('team/team.html', '.grid-item', 'dynamic-team-grid');
-                loadContentFromSubpage('research/research.html', '.grid-item', 'dynamic-research-grid');
-                loadContentFromSubpage('publications/publications.html', '.grid-item', 'dynamic-publications-grid');
+                // Modified file paths to reach out of the /watson subfolder and query the shared lab subfolders
+                loadContentFromSubpage('../news/news.html', '.grid-item', 'dynamic-news-grid');
+                loadContentFromSubpage('../team/team.html', '.grid-item', 'dynamic-team-grid');
+                loadContentFromSubpage('../research/research.html', '.grid-item', 'dynamic-research-grid');
+                loadContentFromSubpage('../publications/publications.html', '.grid-item', 'dynamic-publications-grid');
             }
 
             if (document.readyState === 'loading') {
