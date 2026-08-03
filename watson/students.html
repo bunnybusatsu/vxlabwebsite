@@ -72,7 +72,7 @@
         </header> 
 
         <section id="team" class="content-section">
-            <h2 class="section-title">Team</h2>
+            <h2 class="section-title">Students</h2>
             
             <div id="shared-team-container">
             </div>
@@ -91,24 +91,33 @@
                 const parser = new DOMParser();
                 const sourceDoc = parser.parseFromString(htmlText, 'text/html');
                 
-                // 3. Find ALL grids (because team.html has one for the lead, one for the rest)
+                // CRITICAL UPDATE: Find and remove the Prof Benjamin Watson grid item entirely
+                const leadItem = sourceDoc.getElementById('ben-watson');
+                if (leadItem) {
+                    leadItem.remove();
+                }
+
+                // 3. Find ALL grids
                 const sourceGrids = sourceDoc.querySelectorAll('.content-grid');
                 const targetContainer = document.getElementById('shared-team-container');
                 
                 if (sourceGrids.length > 0 && targetContainer) {
                     // Loop through each grid found
                     sourceGrids.forEach(grid => {
-                        // 4. Correct the relative image paths within this grid
-                        const images = grid.querySelectorAll('img');
-                        images.forEach(img => {
-                            const src = img.getAttribute('src');
-                            if (src && !src.startsWith('http')) {
-                                img.setAttribute('src', '../team/' + src);
-                            }
-                        });
-                        
-                        // 5. Append the corrected grid to our container
-                        targetContainer.appendChild(grid);
+                        // Check if the grid has any remaining elements after removing the lead item
+                        if (grid.children.length > 0) {
+                            // 4. Correct the relative image paths within this grid
+                            const images = grid.querySelectorAll('img');
+                            images.forEach(img => {
+                                const src = img.getAttribute('src');
+                                if (src && !src.startsWith('http')) {
+                                    img.setAttribute('src', '../team/' + src);
+                                }
+                            });
+                            
+                            // 5. Append the corrected grid to our container
+                            targetContainer.appendChild(grid);
+                        }
                     });
                 }
             } catch (error) {
