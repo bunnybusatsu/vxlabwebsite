@@ -155,13 +155,16 @@
                         return;
                     }
 
-                    if (sourceItems.length > 0) {
+                    // Convert NodeList to an array and filter out Ben Watson
+                    const validItems = Array.from(sourceItems).filter(item => item.getAttribute('id') !== 'ben-watson');
+
+                    if (validItems.length > 0) {
                         targetGrid.innerHTML = '';
                         const directoryPrefix = filePath.substring(0, filePath.lastIndexOf('/') + 1);
-                        const limit = Math.min(3, sourceItems.length);
+                        const limit = Math.min(3, validItems.length);
                         
                         for (let i = 0; i < limit; i++) {
-                            const currentItem = sourceItems[i];
+                            const currentItem = validItems[i];
                             const imgNode = currentItem.querySelector('img');
                             const titleNode = currentItem.querySelector('.item-name');
                             
