@@ -1,0 +1,92 @@
+<!DOCTYPE html> 
+<html lang="en"> 
+<head> 
+    <script>
+        (async function() {
+            try {
+                const response = await fetch('../common-head.html'); 
+                const htmlText = await response.text();
+                document.head.insertAdjacentHTML('afterbegin', htmlText);
+                setTimeout(() => { document.body.style.opacity = '1'; }, 50);
+            } catch (error) {
+                console.error("Failed to load common head tags:", error);
+                document.body.style.opacity = '1';
+            }
+        })();
+    </script>
+    
+    <script>
+        (async function() {
+            try {
+                const response = await fetch('header-text.html'); 
+                const htmlText = await response.text();
+                
+                const headerPlaceholder = document.getElementById('shared-header-text');
+                if (headerPlaceholder) {
+                    headerPlaceholder.innerHTML = htmlText;
+                }
+            } catch (error) {
+                console.error("Failed to load header text:", error);
+            }
+        })();
+    </script>
+
+    <style> 
+        .section-title { font-weight: 700; margin-bottom: 3.5rem; color: #d11a2a; } 
+        .content-grid { display: grid; grid-template-columns: 1fr; gap: 3.5rem; max-width: 850px; margin: 0 auto; } 
+        .grid-item { display: grid; grid-template-columns: 200px 1fr; gap: 2.5rem; align-items: start; } 
+        .image-jump-link { display: block; width: 100%; transition: opacity 0.2s ease; }
+        .image-jump-link:hover { opacity: 0.85; }
+        .item-text-container { display: flex; flex-direction: column; align-items: flex-start; text-align: left; }
+        .item-name { margin-bottom: 0.75rem; transition: color 0.15s ease; } 
+        .item-description { font-size: 1.02rem; color: #555555; font-weight: 400; line-height: 1.7; text-align: justify; text-transform: none !important; letter-spacing: normal !important; }
+        .item-description a { color: #d11a2a; text-decoration: none; font-weight: 600; transition: opacity 0.2s ease; text-transform: none !important; }
+        .item-description a:hover { opacity: 0.8; }
+        
+        /* Specialized styling adjustments for the lead element */
+        .lead-item { 
+            display: flex !important; 
+            flex-direction: column; 
+            align-items: center; 
+            margin: 0 auto 4.5rem auto; 
+            max-width: 600px; 
+            border-bottom: 1px solid #eeeeee; 
+            padding-bottom: 3.5rem; 
+        }
+        .lead-item .image-jump-link { width: auto; text-align: center; margin-bottom: 0.5rem; }
+        .lead-image { max-width: 300px !important; width: 100%; height: auto; }
+        .lead-item .item-text-container { align-items: center; text-align: center; }
+        .lead-item .item-description { text-align: justify; } 
+
+        @media (max-width: 768px) { 
+            .grid-item, .lead-item { grid-template-columns: 1fr !important; gap: 1.5rem; justify-items: center; } 
+            .item-text-container { align-items: center; text-align: center; } 
+        } 
+    </style> 
+</head> 
+<body style="opacity: 0; transition: opacity 0.3s ease;"> 
+    <div class="wrapper"> 
+        <header> 
+            <div id="shared-header-text"></div>
+        </header> 
+
+        <section id="about-me" class="content-section">
+            <h2 class="section-title">About Me</h2>
+
+            <div class="content-grid" style="margin-bottom: 0;">
+                <div id="ben-watson" class="grid-item lead-item">
+                    <a href="#ben-watson" class="image-jump-link"><img src="../team/pics/ben.webp" alt="Prof Benjamin Watson" class="headshot-image lead-image"></a>
+                    <div class="item-text-container">
+                        <a href="#ben-watson" class="title-jump-link"><div class="item-name">Prof Benjamin Watson</div></a>
+                        <div class="item-description">
+                            <p style="margin-bottom: 1.5rem;">I'm an Associate Professor of Computer Science at North Carolina State University, where my students and I study how visual technologies affect human emotion, thinking and behavior. Our work in the Visual Experience Lab spans gaming, computer graphics, visualization, user experience, human-computer interfaces and virtual reality. I also co-founded NexUX, a collaborative that sought to improve our lives through deeply interdisciplinary collaboration.</p>
+                            <p>I have worked in the Computer Science department at North Carolina State University since January, 2006. Previously, I worked at Northwestern University and the University of Alberta. I completed my Ph.D. in Computer Science under the kind supervision of Dr. Larry Hodges at Georgia Tech's College of Computing and GVU Center.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </section>
+    </div> 
+</body> 
+</html>
