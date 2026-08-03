@@ -28,8 +28,18 @@
         .item-description a:hover { opacity: 0.8; }
         
         /* Directing specialized styling adjustments for the lead element */
-        .lead-item { grid-template-columns: 300px 1fr !important; margin-bottom: 4.5rem; border-bottom: 1px solid #eeeeee; padding-bottom: 3.5rem; }
+        .lead-item { 
+            display: flex !important; 
+            flex-direction: column; 
+            align-items: center; 
+            margin-bottom: 4.5rem; 
+            border-bottom: 1px solid #eeeeee; 
+            padding-bottom: 3.5rem; 
+        }
+        .lead-item .image-jump-link { width: auto; text-align: center; margin-bottom: 0.5rem; }
         .lead-image { max-width: 300px !important; width: 100%; height: auto; }
+        .lead-item .item-text-container { align-items: center; text-align: center; }
+        .lead-item .item-description { text-align: center; }
 
         @media (max-width: 768px) { 
             .grid-item, .lead-item { grid-template-columns: 1fr !important; gap: 1.5rem; justify-items: center; } 
@@ -50,10 +60,10 @@
 
             <div class="content-grid" style="margin-bottom: 0;">
                 <div id="ben-watson" class="grid-item lead-item">
-                    <a href="#ben-watson" class="image-jump-link"><img src="pics/ben.webp" alt="Professor Benjamin Watson" class="headshot-image lead-image"></a>
+                    <a href="#ben-watson" class="image-jump-link"><img src="pics/ben.webp" alt="Prof Benjamin Watson" class="headshot-image lead-image"></a>
                     <div class="item-text-container">
-                        <a href="#ben-watson" class="title-jump-link"><div class="item-name">Professor Benjamin Watson</div></a>
-                        <p class="item-description">Professor Watson founded the VX Lab at NC State in 2006; it had prior incarnations at Northwestern and U. Alberta.</p>
+                        <a href="#ben-watson" class="title-jump-link"><div class="item-name">Prof Benjamin Watson</div></a>
+                        <p class="item-description">Prof Watson founded the VX Lab at NC State in 2006; it had prior incarnations at Northwestern and U. Alberta.</p>
                     </div>
                 </div>
             </div>
